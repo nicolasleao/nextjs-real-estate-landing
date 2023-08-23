@@ -7,11 +7,19 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    backgroundImage: {
+      'img_bg_hero': 'url("../assets/mulher-em-casa-no-celular-2.jpg")',
+    },
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        'primary-blue': '#106EB0',
+        'primary-orange': '#EC7000',
+        'primary-green': '#6B9E27',
+        'primary-gray': '#33303E',
+        'second-gray': '#4E4B59',
+        'gray-phone': '#F4F4F4',
+        'txt-gray': '#7A77u6',
+        'opacity-gray': 'rgba(100, 80, 57, 0.1)',
       },
     },
   },
