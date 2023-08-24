@@ -11,9 +11,9 @@ export default function Features() {
                 </svg>
               </div>
               <div className="flex-grow">
-                <h2 className="text-gray-900 text-lg title-font font-medium mb-3">Shooting Stars</h2>
-                <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                <a className="mt-3 text-primary-green inline-flex items-center">Learn More
+                <h2 className="text-gray-900 text-lg title-font font-medium mb-3">Financiamento</h2>
+                <p className="leading-relaxed text-base">Realize o sonho da casa própria sem complicações! Juntos, encontramos a opção ideal para você, enquanto os bancos cuidam de tudo. Nosso compromisso é com a sua satisfação e o seu sonho. Comece hoje a construir seu futuro com a nossa ajuda!</p>
+                <a className="mt-3 text-primary-green inline-flex items-center">Saiba Mais
                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
@@ -30,9 +30,9 @@ export default function Features() {
                 </svg>
               </div>
               <div className="flex-grow">
-                <h2 className="text-gray-900 text-lg title-font font-medium mb-3">The Catalyzer</h2>
-                <p className="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                <a className="mt-3 text-primary-green inline-flex items-center">Learn More
+                <h2 className="text-gray-900 text-lg title-font font-medium mb-3">Empréstimo</h2>
+                <p className="leading-relaxed text-base">Libere o potencial financeiro do seu imóvel! Transforme a sua propriedade em oportunidades com nosso empréstimo home equity. Taxas atrativas, processos simplificados e a confiança de quem entende do mercado. O seu imóvel abre portas para o futuro. Vamos juntos?</p>
+                <a className="mt-3 text-primary-green inline-flex items-center">Saiba Mais
                   <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
