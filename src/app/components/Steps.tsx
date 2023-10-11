@@ -1,5 +1,5 @@
-import Image from "next/image"
-import Phone from '@/assets/phone.png'
+import Image from "next/image";
+import Phone from "@/assets/phone.png";
 
 export default function Steps() {
   return (
@@ -15,8 +15,13 @@ export default function Steps() {
                 1
               </div>
               <div className="flex-grow pl-4">
-                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">Simulação</h2>
-                <p className="leading-relaxed">Utilize nossas ferramentas online para simular as condições e valores de seu financiamento.</p>
+                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">
+                  Simulação
+                </h2>
+                <p className="leading-relaxed">
+                  Utilize nossas ferramentas online para simular as condições e
+                  valores de seu financiamento.
+                </p>
               </div>
             </div>
             <div className="flex relative pb-12">
@@ -27,8 +32,13 @@ export default function Steps() {
                 2
               </div>
               <div className="flex-grow pl-4">
-                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">Documentação</h2>
-                <p className="leading-relaxed">Reúna todos os documentos necessários para a aprovação do crédito</p>
+                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">
+                  Documentação
+                </h2>
+                <p className="leading-relaxed">
+                  Reúna todos os documentos necessários para a aprovação do
+                  crédito
+                </p>
               </div>
             </div>
             <div className="flex relative pb-12">
@@ -39,8 +49,13 @@ export default function Steps() {
                 3
               </div>
               <div className="flex-grow pl-4">
-                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">Análise de Crédito</h2>
-                <p className="leading-relaxed">Aguarde a análise dos bancos. Este é o momento deles verificarem sua capacidade de pagamento.</p>
+                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">
+                  Análise de Crédito
+                </h2>
+                <p className="leading-relaxed">
+                  Aguarde a análise dos bancos. Este é o momento deles
+                  verificarem sua capacidade de pagamento.
+                </p>
               </div>
             </div>
             <div className="flex relative pb-12">
@@ -51,8 +66,13 @@ export default function Steps() {
                 4
               </div>
               <div className="flex-grow pl-4">
-                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">Aceitação do Contrato</h2>
-                <p className="leading-relaxed">Analise com cuidado e, estando de acordo, assine o contrato de financiamento.</p>
+                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">
+                  Aceitação do Contrato
+                </h2>
+                <p className="leading-relaxed">
+                  Analise com cuidado e, estando de acordo, assine o contrato de
+                  financiamento.
+                </p>
               </div>
             </div>
             <div className="flex relative pb-12">
@@ -63,8 +83,13 @@ export default function Steps() {
                 5
               </div>
               <div className="flex-grow pl-4">
-                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">Liberação do Crédito</h2>
-                <p className="leading-relaxed">Após a assinatura, o banco liberará o crédito para a compra do imóvel.</p>
+                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">
+                  Liberação do Crédito
+                </h2>
+                <p className="leading-relaxed">
+                  Após a assinatura, o banco liberará o crédito para a compra do
+                  imóvel.
+                </p>
               </div>
             </div>
             <div className="flex relative">
@@ -72,14 +97,19 @@ export default function Steps() {
                 6
               </div>
               <div className="flex-grow pl-4">
-                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">Quitação</h2>
-                <p className="leading-relaxed">Ao finalizar todos os pagamentos, o imóvel é seu! Solicite ao banco a carta de quitação e registre-a no cartório.</p>
+                <h2 className="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">
+                  Quitação
+                </h2>
+                <p className="leading-relaxed">
+                  Ao finalizar todos os pagamentos, o imóvel é seu! Solicite ao
+                  banco a carta de quitação e registre-a no cartório.
+                </p>
               </div>
             </div>
           </div>
-          <Image className="md:mt-0 mt-12" src={Phone} alt="step"/>
+          <Image className="md:mt-0 mt-12" src={Phone} alt="step" />
         </div>
       </div>
     </section>
-  )
+  );
 }

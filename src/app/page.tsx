@@ -1,8 +1,8 @@
-import HeroSection from './components/HeroSection'
-import BankLogos from './components/BankLogos'
-import Features from './components/Features'
-import Steps from './components/Steps'
-import Contact from './components/Contact'
+import HeroSection from "./components/HeroSection";
+import BankLogos from "./components/BankLogos";
+import Features from "./components/Features";
+import Steps from "./components/Steps";
+import Contact from "./components/Contact";
 
 export default function Home() {
   return (
@@ -13,5 +13,5 @@ export default function Home() {
       <Steps />
       <Contact />
     </>
-  )
+  );
 }

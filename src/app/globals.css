@@ -5,3 +5,31 @@
 html {
   scroll-behavior: smooth;
 }
+
+.bg-1 {
+  background: #fff;
+}
+
+.bg-2 {
+  background: #fcfbf9;
+}
+
+.bg-3 {
+  background: #2a2b2d;
+}
+
+.text-dark {
+  color: #2a2b2d;
+}
+
+.bg-4 {
+  background: #326629;
+}
+
+.h-fill {
+  height: calc(100vh - 210px);
+}
+
+.bank-simulation {
+  margin-top: 25px;
+}
