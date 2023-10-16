@@ -11,7 +11,7 @@ export default function Header() {
         <Image
           src="/img/logo-immonova-alt.png"
           alt="Immonova logo"
-          height="94"
+          height="50"
           width="150"
         />
       </a>
