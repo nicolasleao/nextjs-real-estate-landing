@@ -9,8 +9,9 @@ export default function HeroSection() {
   const parallax = () => {
     var yPos = window.scrollY * 0.36;
     var coords = "0% " + yPos + "px";
-    if (parallaxRef.current && parallaxRef.current.style) {
-      parallaxRef.current.style.backgroundPosition = coords;
+    const ref = parallaxRef.current as any;
+    if (ref && ref.style) {
+      ref.style.backgroundPosition = coords;
     }
   };
 

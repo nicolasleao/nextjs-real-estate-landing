@@ -125,7 +125,7 @@ export default function Simulacao() {
     }
 
     setGraphData(gD);
-  }, []);
+  }, [n, vP]);
 
   return (
     <>
