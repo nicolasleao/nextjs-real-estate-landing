@@ -1,6 +1,8 @@
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 
+import Loader from "../Loader";
+
 const getSimulationLink = (totalValue: number, installments: number) => {
   return `/simulacao?vP=${totalValue}&n=${installments}`;
 };
@@ -8,12 +10,14 @@ const getSimulationLink = (totalValue: number, installments: number) => {
 export default function Simulator() {
   const [formData, setFormData] = useState({});
   const [currentStep, setCurrentStep] = useState(0);
+  const [loading, setLoading] = useState(false);
   const emailInputRef = useRef(null);
   const { push } = useRouter();
 
   const nextStep = () => {
     let data = formData as any;
     if (data.name && data.email) {
+      setLoading(true);
       const vP = parseFloat(data.value) - parseFloat(data.initial);
       const n = parseInt(data.years) * 12;
       console.log({
@@ -37,6 +41,14 @@ export default function Simulator() {
       (emailInputRef.current as any).value = "";
     }
   }, [currentStep]);
+
+  if (loading) {
+    return (
+      <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col py-[130px] flex items-center align-center">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
