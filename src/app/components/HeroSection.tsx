@@ -1,29 +1,11 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
 import Simulator from "./Simulator";
 
 export default function HeroSection() {
-  const parallaxRef = useRef(null);
-
-  const parallax = () => {
-    var yPos = window.scrollY * 0.36;
-    var coords = "0% " + yPos + "px";
-    const ref = parallaxRef.current as any;
-    if (ref && ref.style) {
-      ref.style.backgroundPosition = coords;
-    }
-  };
-
-  useLayoutEffect(() => {
-    window.addEventListener("scroll", function () {
-      parallax();
-    });
-  }, []);
 
   return (
     <section
-      ref={parallaxRef}
       className="parallax w-full h-[800px] text-gray-600 body-font bg-img_bg_hero bg-no-repeat bg-top bg-cover"
     >
       <div className="container px-5 py-24 mx-auto flex flex-wrap items-center h-full">
