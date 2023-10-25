@@ -141,52 +141,76 @@ export default function Simulacao() {
           <p className="leading-relaxed text-xl mt-4">
             Você está um passo mais próximo de conquistar o seu sonho.
           </p>
-          <div className="bank-simulation flex items-center">
-            <Image src={LogoSantander} alt="Logo Santander" />
-            <div className="ml-2">
-              <p className="text-xl font-bold">
-                Primeira parcela: R$ {valores.santander.primeira}
-              </p>
-              <p className="text-lg font-medium">
-                Última parcela: R$ {valores.santander.ultima}
-              </p>
-              <p className="text-sm font-medium">
-                Juros: {valores.santander.juros}% a.a
-              </p>
-            </div>
+
+          <div className="relative overflow-x-auto mt-[60px]">
+            <table className="w-full text-sm text-left text-gray-500">
+              <thead className="text-xs text-gray-700 uppercase">
+                <tr>
+                  <th scope="col" className="px-6 py-3">
+                    Banco
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    1ª Parcela
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Ultima Parcela
+                  </th>
+                  <th scope="col" className="px-6 py-3">
+                    Download
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="bg-white border-b">
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    <Image
+                      src={LogoSantander}
+                      alt="Logo Santander"
+                      width="64"
+                    />
+                  </th>
+                  <td className="px-6 py-4">R$ {valores.santander.primeira}</td>
+                  <td className="px-6 py-4">R$ {valores.santander.ultima}</td>
+                  <td className="px-6 py-4 underline text-blue-600">
+                    <a href="#">Baixar PDF</a>
+                  </td>
+                </tr>
+
+                <tr className="bg-white border-b">
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    <Image src={LogoItau} alt="Logo Itau" width="64" />
+                  </th>
+                  <td className="px-6 py-4">R$ {valores.itau.primeira}</td>
+                  <td className="px-6 py-4">R$ {valores.itau.ultima}</td>
+                  <td className="px-6 py-4 underline text-blue-600">
+                    <a href="#">Baixar PDF</a>
+                  </td>
+                </tr>
+
+                <tr className="bg-white border-b">
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                  >
+                    <Image src={LogoBradesco} alt="Logo Bradesco" width="64" />
+                  </th>
+                  <td className="px-6 py-4">R$ {valores.bradesco.primeira}</td>
+                  <td className="px-6 py-4">R$ {valores.bradesco.ultima}</td>
+                  <td className="px-6 py-4 underline text-blue-600">
+                    <a href="#">Baixar PDF</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
-          <div className="bank-simulation flex items-center">
-            <Image src={LogoItau} alt="Logo Santander" />
-            <div className="ml-2">
-              <p className="text-xl font-bold">
-                Primeira parcela: R$ {valores.itau.primeira}
-              </p>
-              <p className="text-lg font-medium">
-                Última parcela: R$ {valores.itau.ultima}
-              </p>
-              <p className="text-sm font-medium">
-                Juros: {valores.itau.juros}% a.a
-              </p>
-            </div>
-          </div>
-
-          <div className="bank-simulation flex items-center">
-            <Image src={LogoBradesco} alt="Logo Santander" />
-            <div className="ml-2">
-              <p className="text-xl font-bold">
-                Primeira parcela: R$ {valores.bradesco.primeira}
-              </p>
-              <p className="text-lg font-medium">
-                Última parcela: R$ {valores.bradesco.ultima}
-              </p>
-              <p className="text-sm font-medium">
-                Juros: {valores.bradesco.juros}% a.a
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-[100px] mb-[100px]">
+          <div className="mt-[60px] mb-[60px]">
             <ResponsiveContainer width="100%" height={400}>
               <LineChart
                 width={1200}
