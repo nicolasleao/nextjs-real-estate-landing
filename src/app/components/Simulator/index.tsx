@@ -47,14 +47,14 @@ export default function Simulator() {
 
   if (loading) {
     return (
-      <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col py-[130px] flex items-center align-center">
+      <div className="lg:w-2/6 md:w-1/2 w-full bg-gray-100 rounded-lg p-8 flex flex-col py-[130px] flex items-center align-center">
         <Loader />
       </div>
     );
   }
 
   return (
-    <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+    <div className="lg:w-2/6 md:w-1/2 w-full bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
       {currentStep === 0 ? (
         <>
           <h2 className="text-gray-900 text-center text-2xl font-bold title-font mb-5">
