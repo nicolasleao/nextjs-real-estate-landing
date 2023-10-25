@@ -7,8 +7,7 @@ export default function Contact() {
             Fale Conosco
           </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-            Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-            gentrify.
+            Entre em contato com um de nossos correspondentes bancários e tire suas duvidas.
           </p>
         </div>
         <div className="lg:w-1/2 md:w-2/3 mx-auto">
@@ -66,7 +65,7 @@ export default function Contact() {
               </button>
             </div>
             <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-              <a className="text-primary-green">example@email.com</a>
+              <a className="text-primary-green">contato@immonova.com.br</a>
               <p className="leading-normal my-5">
                 Av. Fernandes Lima, 1337
                 <br />
