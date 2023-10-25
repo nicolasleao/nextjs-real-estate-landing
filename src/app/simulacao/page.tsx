@@ -134,7 +134,7 @@ export default function Simulacao() {
         <title>Immonova - Simulação</title>
       </Head>
       <div className="">
-        <div className="md:w-2/3 px-4 md:mx-auto mt-[100px]">
+        <div className="md:w-2/3 px-4 md:mx-auto mt-4 md:mt-[100px]">
           <h1 className="title-font font-medium text-4xl">
             Resultados da sua simulação
           </h1>
