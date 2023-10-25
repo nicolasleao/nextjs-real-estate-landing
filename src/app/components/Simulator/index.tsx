@@ -1,6 +1,9 @@
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 
+import CurrencyInput from "react-currency-input-field";
+import InputMask from 'react-input-mask';
+
 import Loader from "../Loader";
 
 const getSimulationLink = (totalValue: number, installments: number) => {
@@ -65,13 +68,13 @@ export default function Simulator() {
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                 <span className="text-gray-500 sm:text-sm">R$&ensp;</span>
               </div>
-              <input
-                onChange={(e) => updateFormData("value", e.target.value)}
-                type="text"
+              <CurrencyInput
                 name="price"
                 id="price"
                 className="w-full bg-white rounded border border-gray-300 focus:border-primary-green focus:ring-2 focus:ring-primary-green text-base outline-none text-gray-700 py-1.5 pl-8 pr-20 leading-8 transition-colors duration-200"
-                placeholder="0.00"
+                placeholder="0,00"
+                decimalsLimit={2}
+                onValueChange={(value: any) => updateFormData("value", value ? value.replace(',', '.') : '0')}
               />
             </div>
 
@@ -85,13 +88,13 @@ export default function Simulator() {
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                 <span className="text-gray-500 sm:text-sm">R$&ensp;</span>
               </div>
-              <input
-                onChange={(e) => updateFormData("initial", e.target.value)}
-                type="text"
+              <CurrencyInput
                 name="initial"
                 id="initial"
                 className="w-full bg-white rounded border border-gray-300 focus:border-primary-green focus:ring-2 focus:ring-primary-green text-base outline-none text-gray-700 py-1.5 pl-8 pr-20 leading-8 transition-colors duration-200"
-                placeholder="30.000"
+                placeholder="0,00"
+                decimalsLimit={2}
+                onValueChange={(value: any) => updateFormData("initial", value ? value.replace(',', '.') : '0')}
               />
             </div>
 
@@ -132,8 +135,11 @@ export default function Simulator() {
             <label htmlFor="cpf" className="leading-7 text-sm text-gray-600">
               CPF
             </label>
-            <input
+            <InputMask
+              mask="999.999.999-99"
               onChange={(e) => updateFormData("cpf", e.target.value)}
+              alwaysShowMask={false}
+              maskChar={null}
               type="text"
               name="cpf"
               id="cpf"
