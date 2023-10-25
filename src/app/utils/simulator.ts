@@ -22,10 +22,10 @@ export const financiarSac = (vP: number, n: number, i: number) => {
  * Format to Brazilian currency
  */
 export const maskToCurrency = ({ nextState }: any) => {
-  const { value } = nextState || {}
+  const { value } = nextState || {};
 
-  let amountFormatted = value?.replace?.(/\D/g, '')
-  amountFormatted = amountFormatted?.replace?.(/^0+/g, '')
+  let amountFormatted = value?.replace?.(/\D/g, "");
+  amountFormatted = amountFormatted?.replace?.(/^0+/g, "");
 
   if (amountFormatted?.length === 2) {
     return {
@@ -33,19 +33,19 @@ export const maskToCurrency = ({ nextState }: any) => {
       value: `R$ ${amountFormatted}`,
       selection: {
         start: amountFormatted.length + 3,
-        end: amountFormatted.length + 3
-      }
-    }
+        end: amountFormatted.length + 3,
+      },
+    };
   }
 
   const amountFormattedWithComma = amountFormatted?.replace?.(
     /(?=\d{2})(\d{2})$/,
-    ',$1'
-  )
+    ",$1",
+  );
   const amountFormattedWithDot = amountFormattedWithComma?.replace?.(
     /(\d)(?=(\d{3})+(?!\d))/g,
-    '$1.'
-  )
+    "$1.",
+  );
 
   if (amountFormattedWithDot) {
     console.log({
@@ -53,20 +53,20 @@ export const maskToCurrency = ({ nextState }: any) => {
       value: `R$ ${amountFormattedWithDot}`,
       selection: {
         start: amountFormattedWithDot.length + 3,
-        end: amountFormattedWithDot.length + 3
-      }
-    })
+        end: amountFormattedWithDot.length + 3,
+      },
+    });
     return {
       ...nextState,
       value: `R$ ${amountFormattedWithDot}`,
       selection: {
         start: amountFormattedWithDot.length + 3,
-        end: amountFormattedWithDot.length + 3
-      }
-    }
+        end: amountFormattedWithDot.length + 3,
+      },
+    };
   } else {
-    console.log('faio')
+    console.log("faio");
   }
 
-  return nextState
-}
+  return nextState;
+};

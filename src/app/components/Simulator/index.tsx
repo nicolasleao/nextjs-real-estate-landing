@@ -2,7 +2,7 @@ import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 
 import CurrencyInput from "react-currency-input-field";
-import InputMask from 'react-input-mask';
+import InputMask from "react-input-mask";
 
 import Loader from "../Loader";
 
@@ -74,7 +74,9 @@ export default function Simulator() {
                 className="w-full bg-white rounded border border-gray-300 focus:border-primary-green focus:ring-2 focus:ring-primary-green text-base outline-none text-gray-700 py-1.5 pl-8 pr-20 leading-8 transition-colors duration-200"
                 placeholder="0,00"
                 decimalsLimit={2}
-                onValueChange={(value: any) => updateFormData("value", value ? value.replace(',', '.') : '0')}
+                onValueChange={(value: any) =>
+                  updateFormData("value", value ? value.replace(",", ".") : "0")
+                }
               />
             </div>
 
@@ -94,7 +96,12 @@ export default function Simulator() {
                 className="w-full bg-white rounded border border-gray-300 focus:border-primary-green focus:ring-2 focus:ring-primary-green text-base outline-none text-gray-700 py-1.5 pl-8 pr-20 leading-8 transition-colors duration-200"
                 placeholder="0,00"
                 decimalsLimit={2}
-                onValueChange={(value: any) => updateFormData("initial", value ? value.replace(',', '.') : '0')}
+                onValueChange={(value: any) =>
+                  updateFormData(
+                    "initial",
+                    value ? value.replace(",", ".") : "0",
+                  )
+                }
               />
             </div>
 

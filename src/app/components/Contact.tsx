@@ -7,7 +7,8 @@ export default function Contact() {
             Fale Conosco
           </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-            Entre em contato com um de nossos correspondentes bancários e tire suas duvidas.
+            Entre em contato com um de nossos correspondentes bancários e tire
+            suas duvidas.
           </p>
         </div>
         <div className="lg:w-1/2 md:w-2/3 mx-auto">
