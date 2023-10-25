@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+import Head from "next/head";
 import { financiarSac } from "@/app/utils/simulator";
 import { useEffect, useState } from "react";
 import LogoSantander from "@/assets/lg-santander.png";
@@ -129,6 +130,9 @@ export default function Simulacao() {
 
   return (
     <>
+      <Head>
+        <title>Immonova - Simulação</title>
+      </Head>
       <div className="">
         <div className="w-2/3 sm:w-4/5 mx-auto mt-[100px]">
           <h1 className="title-font font-medium text-4xl">
