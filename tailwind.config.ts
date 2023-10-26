@@ -8,7 +8,7 @@ const config: Config = {
   ],
   theme: {
     backgroundImage: {
-      img_bg_hero: 'url("../assets/mulher-em-casa-no-celular-2.jpg")',
+      img_bg_hero: 'url("../assets/mulher-em-casa-no-celular-2-min.jpg")',
     },
     extend: {
       colors: {
