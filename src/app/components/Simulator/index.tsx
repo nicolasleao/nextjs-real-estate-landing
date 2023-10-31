@@ -17,7 +17,23 @@ export default function Simulator() {
   const emailInputRef = useRef(null);
   const { push } = useRouter();
 
-  const nextStep = () => {
+  const submitFormData = async (formData: any) => {
+    const reqBodyJson = JSON.stringify({
+      email: formData.email,
+      name: formData.name,
+      documentNo: formData.cpf,
+      totalValue: Number(formData.value),
+      downPayment: Number(formData.initial),
+      installments: Number(formData.years) * 12
+    });
+
+    console.log(reqBodyJson);
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/simulation`, {
+      method: 'POST',
+      body: reqBodyJson,
+    })
+  }
+  const nextStep = async () => {
     let data = formData as any;
     if (data.name && data.email) {
       setLoading(true);
@@ -27,6 +43,7 @@ export default function Simulator() {
         msg: "Dados do Usuário",
         formData: formData,
       });
+      await submitFormData(data)
       push(getSimulationLink(vP, n));
     } else {
       setCurrentStep(1);
