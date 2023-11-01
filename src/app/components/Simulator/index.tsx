@@ -24,25 +24,25 @@ export default function Simulator() {
       documentNo: formData.cpf,
       totalValue: Number(formData.value),
       downPayment: Number(formData.initial),
-      installments: Number(formData.years) * 12
+      installments: Number(formData.years) * 12,
     });
 
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/simulation`, {
-      method: 'POST',
+      method: "POST",
       body: reqBodyJson,
       headers: {
-        'accept': 'application/json',
-        'Content-Type': 'application/json; charset=utf-8',
-      }
-    })
-  }
+        accept: "application/json",
+        "Content-Type": "application/json; charset=utf-8",
+      },
+    });
+  };
   const nextStep = async () => {
     let data = formData as any;
     if (data.name && data.email) {
       setLoading(true);
       const vP = parseFloat(data.value) - parseFloat(data.initial);
       const n = parseInt(data.years) * 12;
-      await submitFormData(data)
+      await submitFormData(data);
       push(getSimulationLink(vP, n));
     } else {
       setCurrentStep(1);
