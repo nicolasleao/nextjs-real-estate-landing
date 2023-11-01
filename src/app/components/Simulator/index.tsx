@@ -27,10 +27,13 @@ export default function Simulator() {
       installments: Number(formData.years) * 12
     });
 
-    console.log(reqBodyJson);
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/simulation`, {
       method: 'POST',
       body: reqBodyJson,
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json; charset=utf-8',
+      }
     })
   }
   const nextStep = async () => {
@@ -39,10 +42,6 @@ export default function Simulator() {
       setLoading(true);
       const vP = parseFloat(data.value) - parseFloat(data.initial);
       const n = parseInt(data.years) * 12;
-      console.log({
-        msg: "Dados do Usuário",
-        formData: formData,
-      });
       await submitFormData(data)
       push(getSimulationLink(vP, n));
     } else {
