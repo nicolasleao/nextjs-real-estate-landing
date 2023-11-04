@@ -27,6 +27,8 @@ export default function LogInForm() {
       res.json().then(data => {
         if(data.status == 'error') {
           setError(data.message)
+        } else {
+          setError('')
         }
       })
     })

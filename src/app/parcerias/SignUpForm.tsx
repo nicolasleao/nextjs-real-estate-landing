@@ -30,6 +30,8 @@ export default function SignUpForm() {
       res.json().then(data => {
         if(data.status == 'error') {
           setError(data.message)
+        } else {
+          setError('')
         }
       })
     })
