@@ -5,6 +5,7 @@ import CurrencyInput from "react-currency-input-field";
 import InputMask from "react-input-mask";
 
 import Loader from "../Loader";
+import { makeApiCall } from "@/app/utils/api";
 
 const getSimulationLink = (totalValue: number, installments: number) => {
   return `/simulacao?vP=${totalValue}&n=${installments}`;
@@ -27,14 +28,7 @@ export default function Simulator() {
       installments: Number(formData.years) * 12,
     });
 
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/simulation`, {
-      method: "POST",
-      body: reqBodyJson,
-      headers: {
-        accept: "application/json",
-        "Content-Type": "application/json; charset=utf-8",
-      },
-    });
+    await makeApiCall("simulation", "POST", reqBodyJson);
   };
   const nextStep = async () => {
     let data = formData as any;
