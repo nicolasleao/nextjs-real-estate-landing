@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -29,12 +30,12 @@ export default function Header() {
         >
           Empréstimo
         </a>
-        <a
-          href="#"
+        <Link
+          href="parcerias"
           className="text-lg font-semibold text-dark transition duration-100 hover:text-primary-green"
         >
           Parcerias
-        </a>
+        </Link>
         <a
           href="#contact"
           className="text-lg font-semibold text-dark transition duration-100 hover:text-primary-green"
