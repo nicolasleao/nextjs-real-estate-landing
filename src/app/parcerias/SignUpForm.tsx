@@ -3,6 +3,7 @@ import { useState } from "react";
 import { makeApiCall } from "@/app/utils/api";
 
 export default function SignUpForm() {
+  const [error, setError] = useState('')
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,19 +16,26 @@ export default function SignUpForm() {
     setFormData(newFormData);
   };
 
-  const submitForm = async () => {
+  const submitForm = async (e: any) => {
+    e.preventDefault()
+    e.stopPropagation()
+
     const reqBodyJson = JSON.stringify({
       email: formData.email,
       name: formData.name,
       password: formData.password,
     });
 
-    try {
-      const response = await makeApiCall("user", "POST", reqBodyJson);
-      console.log(response.json());
-    } catch (e) {
+    makeApiCall("user", "POST", reqBodyJson).then(res => {
+      res.json().then(data => {
+        if(data.status == 'error') {
+          setError(data.message)
+        }
+      })
+    })
+    .catch(e => {
       console.error(e);
-    }
+    })
   };
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12">
@@ -38,6 +46,7 @@ export default function SignUpForm() {
 
         <form className="mx-auto max-w-lg rounded-lg border">
           <div className="flex flex-col gap-4 p-4 md:p-8">
+            {!!error && (<p className="text-red-600">{error}</p>)}
             <div>
               <label
                 htmlFor="name"
@@ -47,7 +56,7 @@ export default function SignUpForm() {
               </label>
               <input
                 name="name"
-                onChange={(e) => updateFormData("name", e.target.value)}
+                onChange={e => updateFormData("name", e.target.value)}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
             </div>
@@ -61,7 +70,7 @@ export default function SignUpForm() {
               </label>
               <input
                 name="email"
-                onChange={(e) => updateFormData("email", e.target.value)}
+                onChange={e => updateFormData("email", e.target.value)}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
             </div>
@@ -75,13 +84,14 @@ export default function SignUpForm() {
               </label>
               <input
                 name="password"
-                onChange={(e) => updateFormData("password", e.target.value)}
+                type="password"
+                onChange={e => updateFormData("password", e.target.value)}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
               />
             </div>
 
             <button
-              onClick={() => submitForm()}
+              onClick={e => submitForm(e)}
               className="block rounded-lg bg-gray-800 px-8 py-3 text-center text-sm font-semibold text-white bg-primary-green outline-none ring-gray-300 transition duration-100 focus-visible:ring active:bg-gray-600 md:text-base"
             >
               Continuar
