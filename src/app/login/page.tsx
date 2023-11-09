@@ -6,7 +6,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import LogInForm from "./LogInForm";
 
-export default function Parcerias() {
+export default function Login() {
   const searchParams = useSearchParams();
   const origin = searchParams.get("origin");
   const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ export default function Parcerias() {
   return (
     <>
       <Head>
-        <title>Immonova - Parcerias</title>
+        <title>Immonova - Login</title>
       </Head>
       <div className="">
         <div className="md:w-2/3 px-4 md:mx-auto mt-4 md:mt-[100px]">
