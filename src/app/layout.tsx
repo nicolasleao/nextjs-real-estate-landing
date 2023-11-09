@@ -1,5 +1,6 @@
 import "./globals.css";
 // import type { Metadata } from "next";
+import Script from "next/script";
 import { Lato } from "next/font/google";
 
 const lato = Lato({
@@ -27,7 +28,7 @@ export default function RootLayout({
       </head>
       <body className={lato.className}>
         {children}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js" />
       </body>
     </html>
   );
