@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -79,7 +79,11 @@ export default function Header() {
           Menu
         </button>
       </header>
-      <div className={`${isMenuActive ? '' : 'hidden'} mobile-menu w-full text-center lg:hidden`}>
+      <div
+        className={`${
+          isMenuActive ? "" : "hidden"
+        } mobile-menu w-full text-center lg:hidden`}
+      >
         <nav className="gap-2 flex flex-col items-center justify-center">
           <a
             href="#"
