@@ -30,29 +30,29 @@ export default function Sidenav() {
                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <i className="las la-chart-pie"></i>
-                <span className="ml-3">Overview</span>
+                <span className="ml-3">Dashboard</span>
               </a>
             </li>
             <li>
               <button
                 type="button"
                 className="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                aria-controls="dropdown-pages"
-                data-collapse-toggle="dropdown-pages"
+                aria-controls="dropdown-imoveis"
+                data-collapse-toggle="dropdown-imoveis"
               >
-                <i className="las la-file"></i>
+                <i className="las la-home"></i>
                 <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                  Pages
+                  Imóveis
                 </span>
                 <Image src={ArrowDownIcon} alt="arrow down" />
               </button>
-              <ul id="dropdown-pages" className="hidden py-2 space-y-2">
+              <ul id="dropdown-imoveis" className="hidden py-2 space-y-2">
                 <li>
                   <a
                     href="#"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Settings
+                    Aluguel
                   </a>
                 </li>
                 <li>
@@ -60,7 +60,7 @@ export default function Sidenav() {
                     href="#"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Kanban
+                    Venda
                   </a>
                 </li>
                 <li>
@@ -68,7 +68,7 @@ export default function Sidenav() {
                     href="#"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Calendar
+                    Ver todos
                   </a>
                 </li>
               </ul>
@@ -77,22 +77,22 @@ export default function Sidenav() {
               <button
                 type="button"
                 className="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                aria-controls="dropdown-sales"
-                data-collapse-toggle="dropdown-sales"
+                aria-controls="dropdown-agendamento"
+                data-collapse-toggle="dropdown-agendamento"
               >
-                <i className="las la-shopping-bag"></i>
+                <i className="las la-calendar"></i>
                 <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                  Sales
+                  Agendamento
                 </span>
                 <Image src={ArrowDownIcon} alt="arrow down" />
               </button>
-              <ul id="dropdown-sales" className="hidden py-2 space-y-2">
+              <ul id="dropdown-agendamento" className="hidden py-2 space-y-2">
                 <li>
                   <a
                     href="#"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Products
+                    Solicitações
                   </a>
                 </li>
                 <li>
@@ -100,7 +100,7 @@ export default function Sidenav() {
                     href="#"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Billing
+                    Visitas Marcadas
                   </a>
                 </li>
                 <li>
@@ -108,7 +108,7 @@ export default function Sidenav() {
                     href="#"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Invoice
+                    Disponibilidade
                   </a>
                 </li>
               </ul>
@@ -119,7 +119,7 @@ export default function Sidenav() {
                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <i className="las la-envelope"></i>
-                <span className="flex-1 ml-3 whitespace-nowrap">Messages</span>
+                <span className="flex-1 ml-3 whitespace-nowrap">Mensagens</span>
                 <span className="inline-flex justify-center items-center w-5 h-5 text-xs font-semibold rounded-full text-primary-800 bg-primary-100 dark:bg-primary-200 dark:text-primary-800">
                   6
                 </span>
@@ -129,25 +129,22 @@ export default function Sidenav() {
               <button
                 type="button"
                 className="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                aria-controls="dropdown-authentication"
-                data-collapse-toggle="dropdown-authentication"
+                aria-controls="dropdown-documentos"
+                data-collapse-toggle="dropdown-documentos"
               >
-                <i className="las la-user"></i>
+                <i className="las la-file-invoice"></i>
                 <span className="flex-1 ml-3 text-left whitespace-nowrap">
-                  Authentication
+                  Documentos
                 </span>
                 <Image src={ArrowDownIcon} alt="arrow down" />
               </button>
-              <ul
-                id="dropdown-authentication"
-                className="hidden py-2 space-y-2"
-              >
+              <ul id="dropdown-documentos" className="hidden py-2 space-y-2">
                 <li>
                   <a
                     href="#"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Sign In
+                    Contratos Fechados
                   </a>
                 </li>
                 <li>
@@ -155,7 +152,7 @@ export default function Sidenav() {
                     href="#"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Sign Up
+                    Notas Fiscais
                   </a>
                 </li>
                 <li>
@@ -163,7 +160,7 @@ export default function Sidenav() {
                     href="#"
                     className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                   >
-                    Forgot Password
+                    Immonova
                   </a>
                 </li>
               </ul>
@@ -175,17 +172,8 @@ export default function Sidenav() {
                 href="#"
                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
               >
-                <i className="las la-file-alt"></i>
-                <span className="ml-3">Docs</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
-              >
                 <i className="las la-stream"></i>
-                <span className="ml-3">Components</span>
+                <span className="ml-3">Listagens</span>
               </a>
             </li>
             <li>
@@ -194,7 +182,7 @@ export default function Sidenav() {
                 className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
               >
                 <i className="las la-question"></i>
-                <span className="ml-3">Help</span>
+                <span className="ml-3">Ajuda</span>
               </a>
             </li>
           </ul>
@@ -218,7 +206,7 @@ export default function Sidenav() {
             role="tooltip"
             className="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip"
           >
-            Settings page
+            Configurações
             <div className="tooltip-arrow" data-popper-arrow></div>
           </div>
         </div>
