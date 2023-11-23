@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Phone from "@/assets/phone.png";
+import HomeIllustration from "@/assets/undraw_home_settings.svg";
 
 export default function Steps() {
   return (
@@ -107,7 +107,7 @@ export default function Steps() {
               </div>
             </div>
           </div>
-          <Image className="md:mt-0 mt-12" src={Phone} alt="step" />
+          <Image className="md:mt-0 mt-12 p-12" src={HomeIllustration} alt="step" />
         </div>
       </div>
     </section>
