@@ -6,6 +6,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 
 import Sidenav from "./Sidenav";
+import Loader from "@/app/_components/Loader";
 
 export default function Dashboard() {
   const searchParams = useSearchParams();
@@ -15,14 +16,23 @@ export default function Dashboard() {
     name: "",
     password: "",
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const at = localStorage.getItem("@immonova/at");
     const rt = localStorage.getItem("@immonova/rt");
     if (!at || !rt) {
       window.location.href = '/login';
+    } else {
+      setLoading(false);
     }
   }, []);
+
+  if (loading) return (
+    <div className="w-full h-[100vh] flex items-center justify-center">
+      <Loader></Loader>
+    </div>
+  )
 
   return (
     <>
