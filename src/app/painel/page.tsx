@@ -40,15 +40,8 @@ export default function Dashboard() {
       <Head>
         <title>Immonova - Painel</title>
       </Head>
-      <div className="">
-        <div className="sidebar"></div>
-        <div>
-          <div className="relative overflow-x-auto mt-4">
-            <div>
-              <Sidenav />
-            </div>
-          </div>
-        </div>
+      <div className="relative overflow-x-auto mt-4">
+        <Sidenav />
       </div>
     </>
   );
