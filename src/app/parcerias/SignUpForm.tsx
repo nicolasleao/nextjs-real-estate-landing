@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useState } from "react";
-import { makeApiCall } from "@/app/utils/api";
+import { makeApiCall, handleGoogleLogin, handleApiError } from "@/app/utils/api";
 
 export default function SignUpForm() {
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string|string[]>("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,14 +26,10 @@ export default function SignUpForm() {
       password: formData.password,
     });
 
-    makeApiCall("user", "POST", reqBodyJson)
+    makeApiCall("auth/local/signup", "POST", reqBodyJson)
       .then((res) => {
         res.json().then((data) => {
-          if (data.status == "error") {
-            setError(data.message);
-          } else {
-            setError("");
-          }
+          handleApiError(res, data, setError);
         });
       })
       .catch((e) => {
@@ -49,7 +45,11 @@ export default function SignUpForm() {
 
         <form className="mx-auto max-w-lg rounded-lg border">
           <div className="flex flex-col gap-4 p-4 md:p-8">
-            {!!error && <p className="text-red-600">{error}</p>}
+            {!!error && Array.isArray(error) ? (
+              <p className="text-red-600">{error[0]}</p>
+            ) : (
+              <p className="text-red-600">{error}</p>
+            )}
             <div>
               <label
                 htmlFor="name"
@@ -107,7 +107,10 @@ export default function SignUpForm() {
               </span>
             </div>
 
-            <button className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base">
+            <button
+              className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base"
+              onClick={handleGoogleLogin}
+            >
               <svg
                 className="h-5 w-5 shrink-0"
                 width="24"
