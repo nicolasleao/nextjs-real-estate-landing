@@ -22,17 +22,18 @@ export default function Dashboard() {
     const at = localStorage.getItem("@immonova/at");
     const rt = localStorage.getItem("@immonova/rt");
     if (!at || !rt) {
-      window.location.href = '/login';
+      window.location.href = "/login";
     } else {
       setLoading(false);
     }
   }, []);
 
-  if (loading) return (
-    <div className="w-full h-[100vh] flex items-center justify-center">
-      <Loader></Loader>
-    </div>
-  )
+  if (loading)
+    return (
+      <div className="w-full h-[100vh] flex items-center justify-center">
+        <Loader></Loader>
+      </div>
+    );
 
   return (
     <>

@@ -1,9 +1,15 @@
 import Link from "next/link";
 import { useState } from "react";
-import { makeApiCall, handleGoogleLogin, handleApiError } from "@/app/utils/api";
+import {
+  makeApiCall,
+  handleGoogleLogin,
+  handleApiError,
+} from "@/app/utils/api";
+import { useRouter } from "next/navigation";
 
 export default function SignUpForm() {
-  const [error, setError] = useState<string|string[]>("");
+  const router = useRouter();
+  const [error, setError] = useState<string | string[]>("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,9 +40,9 @@ export default function SignUpForm() {
           if (data.accessToken && data.refreshToken) {
             localStorage.setItem("@immonova/at", data.accessToken);
             localStorage.setItem("@immonova/rt", data.refreshToken);
-            window.location.href = '/painel';
+            router.push("/painel");
           } else {
-            setError('Falha no cadastro')
+            setError("Falha no cadastro");
           }
         });
       })

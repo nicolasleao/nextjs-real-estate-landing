@@ -4,7 +4,7 @@ export const handleApiError = (res: any, data: any, setError: any) => {
   } else {
     setError("");
   }
-}
+};
 
 export const makeApiCall = async (
   path: string,
@@ -18,11 +18,11 @@ export const makeApiCall = async (
       accept: "application/json",
       "Content-Type": "application/json; charset=utf-8",
     },
-  })
+  });
 };
 
 export const handleGoogleLogin = (e: any) => {
-  e.preventDefault()
-  e.stopPropagation()
-  window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`
-}
+  e.preventDefault();
+  e.stopPropagation();
+  window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
+};

@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { handleGoogleLogin, makeApiCall, handleApiError } from "@/app/utils/api";
+import {
+  handleGoogleLogin,
+  makeApiCall,
+  handleApiError,
+} from "@/app/utils/api";
+import { useRouter } from "next/navigation";
 
 export default function LogInForm() {
   const [error, setError] = useState("");
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -26,14 +32,14 @@ export default function LogInForm() {
     makeApiCall("auth/local/login", "POST", reqBodyJson)
       .then((res) => {
         res.json().then((data) => {
-          handleApiError(res, data, setError)
+          handleApiError(res, data, setError);
           console.log(data);
           if (data.access_token && data.refresh_token) {
             localStorage.setItem("@immonova/at", data.access_token);
             localStorage.setItem("@immonova/rt", data.refresh_token);
-            window.location.href = '/painel';
+            router.push("/painel");
           } else {
-            setError('Usuário ou senha inválidos')
+            setError("Usuário ou senha inválidos");
           }
         });
       })
