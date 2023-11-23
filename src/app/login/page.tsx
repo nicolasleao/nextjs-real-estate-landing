@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import LogInForm from "./LogInForm";
+import Header from "@/app/_components/Header";
+import Footer from "@/app/_components/Footer";
 
 export default function Login() {
   const searchParams = useSearchParams();
@@ -21,6 +23,7 @@ export default function Login() {
 
   return (
     <>
+      <Header />
       <Head>
         <title>Immonova - Login</title>
       </Head>
@@ -31,6 +34,7 @@ export default function Login() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

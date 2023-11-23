@@ -1,5 +1,5 @@
 import "./globals.css";
-// import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Script from "next/script";
 import { Lato } from "next/font/google";
 
@@ -8,10 +8,10 @@ const lato = Lato({
   weight: ["400", "700"],
 });
 
-// export const metadata: Metadata = {
-//   title: "Immonova - Financiamento imobiliário na palma da sua mão",
-//   description: "Financiamento imobiliário na palma da sua mão",
-// };
+export const metadata: Metadata = {
+  title: "Immonova - Financiamento imobiliário na palma da sua mão",
+  description: "Financiamento imobiliário na palma da sua mão",
+};
 
 export default function RootLayout({
   children,

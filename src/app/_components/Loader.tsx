@@ -7,6 +7,7 @@ export default function Loader() {
       alt="Immonova loader"
       height="30"
       width="30"
+      priority
     />
   );
 }

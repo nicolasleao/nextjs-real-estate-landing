@@ -1,6 +1,10 @@
 import React from "react";
-import Header from "@/app/_components/Header";
-import Footer from "@/app/_components/Footer";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Immonova - Login",
+  description: "Financiamento imobiliário na palma da sua mão",
+};
 
 export default function LoginLayout({
   children, // will be a page or nested layout
@@ -9,9 +13,7 @@ export default function LoginLayout({
 }) {
   return (
     <>
-      <Header />
       {children}
-      <Footer />
     </>
   );
 }
