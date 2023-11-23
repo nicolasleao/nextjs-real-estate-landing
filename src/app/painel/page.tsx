@@ -17,7 +17,11 @@ export default function Dashboard() {
   });
 
   useEffect(() => {
-    // componentDidMount
+    const at = localStorage.getItem("@immonova/at");
+    const rt = localStorage.getItem("@immonova/rt");
+    if (!at || !rt) {
+      window.location.href = '/login';
+    }
   }, []);
 
   return (

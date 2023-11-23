@@ -27,6 +27,14 @@ export default function LogInForm() {
       .then((res) => {
         res.json().then((data) => {
           handleApiError(res, data, setError)
+          console.log(data);
+          if (data.access_token && data.refresh_token) {
+            localStorage.setItem("@immonova/at", data.access_token);
+            localStorage.setItem("@immonova/rt", data.refresh_token);
+            window.location.href = '/painel';
+          } else {
+            setError('Usuário ou senha inválidos')
+          }
         });
       })
       .catch((e) => {

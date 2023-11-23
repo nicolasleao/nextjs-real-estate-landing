@@ -30,6 +30,14 @@ export default function SignUpForm() {
       .then((res) => {
         res.json().then((data) => {
           handleApiError(res, data, setError);
+
+          if (data.accessToken && data.refreshToken) {
+            localStorage.setItem("@immonova/at", data.accessToken);
+            localStorage.setItem("@immonova/rt", data.refreshToken);
+            window.location.href = '/painel';
+          } else {
+            setError('Falha no cadastro')
+          }
         });
       })
       .catch((e) => {
