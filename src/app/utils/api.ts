@@ -3,7 +3,7 @@ export const makeApiCall = async (
   method: string,
   body: string | null,
 ) => {
-  return await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/${path}`, {
+  return await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${path}`, {
     method: method,
     body: body,
     headers: {

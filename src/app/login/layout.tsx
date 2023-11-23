@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "@/app/components/Header";
-import Footer from "@/app/components/Footer";
+import Header from "@/app/_components/Header";
+import Footer from "@/app/_components/Footer";
 
 export default function LoginLayout({
   children, // will be a page or nested layout

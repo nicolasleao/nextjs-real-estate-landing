@@ -28,7 +28,7 @@ export default function Simulator() {
       installments: Number(formData.years) * 12,
     });
 
-    await makeApiCall("simulation", "POST", reqBodyJson);
+    await makeApiCall("simulations", "POST", reqBodyJson);
   };
   const nextStep = async () => {
     let data = formData as any;

@@ -1,10 +1,10 @@
-import HeroSection from "./components/HeroSection";
-import BankLogos from "./components/BankLogos";
-import Features from "./components/Features";
-import Steps from "./components/Steps";
-import Contact from "./components/Contact";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import HeroSection from "./_components/HeroSection";
+import BankLogos from "./_components/BankLogos";
+import Features from "./_components/Features";
+import Steps from "./_components/Steps";
+import Contact from "./_components/Contact";
+import Header from "./_components/Header";
+import Footer from "./_components/Footer";
 import Head from "next/head";
 
 export default function Home() {
