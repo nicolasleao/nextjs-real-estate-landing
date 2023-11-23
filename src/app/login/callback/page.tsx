@@ -16,7 +16,7 @@ export default function LogInForm() {
       localStorage.setItem("@immonova/rt", rt);
       router.push("/painel");
     }
-  }, [at, rt]);
+  }, [at, rt, router]);
 
   return (
     <div className="w-full h-[100vh] flex items-center justify-center">
