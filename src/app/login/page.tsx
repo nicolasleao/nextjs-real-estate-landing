@@ -1,26 +1,13 @@
 "use client";
 
 import React from "react";
-import { useSearchParams } from "next/navigation";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import LogInForm from "./LogInForm";
 import Header from "@/app/_components/Header";
 import Footer from "@/app/_components/Footer";
 
 export default function Login() {
-  const searchParams = useSearchParams();
-  const origin = searchParams.get("origin");
-  const [formData, setFormData] = useState({
-    email: "",
-    name: "",
-    password: "",
-  });
-
-  useEffect(() => {
-    // componentDidMount
-  }, []);
-
   return (
     <>
       <Header />

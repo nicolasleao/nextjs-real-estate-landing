@@ -5,7 +5,7 @@ import CurrencyInput from "react-currency-input-field";
 import InputMask from "react-input-mask";
 
 import Loader from "../Loader";
-import { makeApiCall } from "@/app/utils/api";
+import { createSimulation } from "@/api/simulation.api";
 
 const getSimulationLink = (totalValue: number, installments: number) => {
   return `/simulacao?vP=${totalValue}&n=${installments}`;
@@ -19,16 +19,16 @@ export default function Simulator() {
   const { push } = useRouter();
 
   const submitFormData = async (formData: any) => {
-    const reqBodyJson = JSON.stringify({
+    const payload = {
       email: formData.email,
       name: formData.name,
       documentNo: formData.cpf,
       totalValue: Number(formData.value),
       downPayment: Number(formData.initial),
       installments: Number(formData.years) * 12,
-    });
+    };
 
-    await makeApiCall("simulations", "POST", reqBodyJson);
+    await createSimulation(payload);
   };
   const nextStep = async () => {
     let data = formData as any;

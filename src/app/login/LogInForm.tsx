@@ -1,11 +1,28 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import {
-  handleGoogleLogin,
-  makeApiCall,
-  handleApiError,
-} from "@/app/utils/api";
+import { setTokensToStorage, handleGoogleLogin } from "@/app/utils/auth";
 import { useRouter } from "next/navigation";
+import { logIn } from "@/api/auth.api";
+
+const logUserIn = async (email: string, password: string) => {
+    const res = await logIn(email, password);
+    if (res.status >= 300) {
+        return {
+            status: "error",
+            message: res.message
+        };
+    }
+    if (!res.access_token || !res.refresh_token || !res.expires_at) {
+        return {
+            status: "error",
+            message: "Usuário ou senha inválidos"
+        };
+    }
+    setTokensToStorage(res.access_token, res.refresh_token, res.expires_at);
+    return {
+        message: "success"
+    }
+}
 
 export default function LogInForm() {
   const [error, setError] = useState("");
@@ -24,28 +41,13 @@ export default function LogInForm() {
   const submitForm = async (e: any) => {
     e.preventDefault();
     e.stopPropagation();
-    const reqBodyJson = JSON.stringify({
-      email: formData.email,
-      password: formData.password,
-    });
 
-    makeApiCall("auth/local/login", "POST", reqBodyJson)
-      .then((res) => {
-        res.json().then((data) => {
-          handleApiError(res, data, setError);
-          console.log(data);
-          if (data.access_token && data.refresh_token) {
-            localStorage.setItem("@immonova/at", data.access_token);
-            localStorage.setItem("@immonova/rt", data.refresh_token);
-            router.push("/painel");
-          } else {
-            setError("Usuário ou senha inválidos");
-          }
-        });
-      })
-      .catch((e) => {
-        console.error(e);
-      });
+    const response = await logUserIn(formData.email, formData.password);
+    if (response.status == "error") {
+      setError(response.message);
+    } else {
+      router.push("/painel");
+    }
   };
 
   return (

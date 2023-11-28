@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Lato } from "next/font/google";
+import { ReduxProvider } from "@/redux/provider";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -26,7 +26,11 @@ export default function RootLayout({
           href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
         />
       </head>
-      <body className={lato.className}>{children}</body>
+      <body className={lato.className}>
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
+      </body>
     </html>
   );
 }

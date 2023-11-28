@@ -21,46 +21,10 @@ import {
 
 const data = [
   {
-    name: "Page A",
+    name: "Mês 1",
     Santander: 4000,
     Itau: 2400,
     Bradesco: 2400,
-  },
-  {
-    name: "Page B",
-    Santander: 3000,
-    Itau: 1398,
-    Bradesco: 2210,
-  },
-  {
-    name: "Page C",
-    Santander: 2000,
-    Itau: 9800,
-    Bradesco: 2290,
-  },
-  {
-    name: "Page D",
-    Santander: 2780,
-    Itau: 3908,
-    Bradesco: 2000,
-  },
-  {
-    name: "Page E",
-    Santander: 1890,
-    Itau: 4800,
-    Bradesco: 2181,
-  },
-  {
-    name: "Page F",
-    Santander: 2390,
-    Itau: 3800,
-    Bradesco: 2500,
-  },
-  {
-    name: "Page G",
-    Santander: 3490,
-    Itau: 4300,
-    Bradesco: 2100,
   },
 ];
 
