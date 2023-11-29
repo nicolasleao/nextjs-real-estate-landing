@@ -11,6 +11,7 @@ import download from "downloadjs";
 import LogoSantander from "@/assets/lg-santander.png";
 import LogoItau from "@/assets/lg-itau.png";
 import LogoBradesco from "@/assets/lg-bradesco.png";
+import BotaoWhatsapp from "@/assets/botao-whatsapp.svg";
 import { generateSimulationPdf } from "@/api/pdf.api";
 import Loader from "../_components/Loader";
 import {
@@ -185,6 +186,7 @@ export default function Simulacao() {
                   <td className="px-6 py-4">R$ {valores.santander.ultima}</td>
                   <td className="px-6 py-4 underline text-blue-600">
                     <span
+                      className="cursor-pointer"
                       onClick={(e) =>
                         getSimulationPdf(e, simulationId, "Santander")
                       }
@@ -205,6 +207,7 @@ export default function Simulacao() {
                   <td className="px-6 py-4">R$ {valores.itau.ultima}</td>
                   <td className="px-6 py-4 underline text-blue-600">
                     <span
+                      className="cursor-pointer"
                       onClick={(e) => getSimulationPdf(e, simulationId, "Itau")}
                     >
                       Baixar PDF
@@ -223,6 +226,7 @@ export default function Simulacao() {
                   <td className="px-6 py-4">R$ {valores.bradesco.ultima}</td>
                   <td className="px-6 py-4 underline text-blue-600">
                     <span
+                      className="cursor-pointer"
                       onClick={(e) =>
                         getSimulationPdf(e, simulationId, "Bradesco")
                       }
@@ -235,7 +239,20 @@ export default function Simulacao() {
             </table>
           </div>
 
-          <div className="mt-[60px] mb-[60px]">
+          <div
+            className="flex items-center justify-center mt-8 cursor-pointer"
+            onClick={(e) => {
+              window.open(`https:wa.me/${process.env.NEXT_PUBLIC_BANK_BROKER_PHONE}`, '_blank')
+            }}
+          >
+            <Image
+              src={BotaoWhatsapp}
+              alt="Botao whatsapp falar com correspondente bancário"
+              width="230"
+            />
+          </div>
+
+          <div className="mt-8 mb-[60px]">
             <ResponsiveContainer width="100%" height={400}>
               <LineChart
                 width={1200}
