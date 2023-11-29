@@ -19,7 +19,7 @@ export default function LogInForm() {
     } else {
       router.push("/login");
     }
-  }, [at, rt, router]);
+  }, [at, rt, exp, router]);
 
   return (
     <div className="w-full h-[100vh] flex items-center justify-center">
