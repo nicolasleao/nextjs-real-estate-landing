@@ -42,6 +42,7 @@ const getSimulationPdf = async (
   e.preventDefault();
   e.stopPropagation();
   await generateSimulationPdf(simulationId ?? "", bankName).then((res) => {
+    console.log('downloading pdf with data', res);
     download(res, `Immonova - ${bankName}.pdf`, "application/pdf");
   });
 };

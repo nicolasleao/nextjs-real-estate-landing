@@ -6,7 +6,7 @@ export const generateSimulationPdf = async (
 ) => {
   try {
     const res = await api.get(`/pdf/simulation/${simulationId}`, {
-      responseType: "arraybuffer",
+      responseType: "blob",
       params: {
         bank: bankName,
       },
