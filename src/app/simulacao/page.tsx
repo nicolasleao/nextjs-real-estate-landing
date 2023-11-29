@@ -42,7 +42,6 @@ const getSimulationPdf = async (
   e.preventDefault();
   e.stopPropagation();
   await generateSimulationPdf(simulationId ?? "", bankName).then((res) => {
-    console.log('downloading pdf with data', res);
     download(res, `Immonova - ${bankName}.pdf`, "application/pdf");
   });
 };
@@ -132,7 +131,7 @@ export default function Simulacao() {
     }
 
     setGraphData(gD);
-  }, [installments, totalValue, downPayment]);
+  }, [installments, totalValue, downPayment, dispatch, id]);
 
   if (!totalValue || !downPayment) {
     return (
