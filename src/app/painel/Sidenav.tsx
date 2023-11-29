@@ -44,7 +44,7 @@ const sidebarItems = [
 export default function Sidenav() {
   return (
     <Menu>
-      <Menu.Button className="ml-4" onClick={() => console.log("test")}>
+      <Menu.Button className="ml-4">
         <span className="sr-only">Abrir menu lateral</span>
         <Image src={HamburgerMenuIcon} alt="hamburger menu" />
       </Menu.Button>

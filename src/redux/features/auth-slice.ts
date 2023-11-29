@@ -30,3 +30,4 @@ export const authSlice = createSlice({
 export const {
     logIn
 } = authSlice.actions;
+export default authSlice.reducer;

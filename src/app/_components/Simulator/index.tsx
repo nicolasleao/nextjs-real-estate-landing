@@ -1,5 +1,10 @@
+"use client"
+
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { setSimulation } from "@/redux/features/simulation-slice";
 
 import CurrencyInput from "react-currency-input-field";
 import InputMask from "react-input-mask";
@@ -12,11 +17,12 @@ const getSimulationLink = (totalValue: number, installments: number) => {
 };
 
 export default function Simulator() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { push } = useRouter();
   const [formData, setFormData] = useState({});
   const [currentStep, setCurrentStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const emailInputRef = useRef(null);
-  const { push } = useRouter();
 
   const submitFormData = async (formData: any) => {
     const payload = {
@@ -28,7 +34,14 @@ export default function Simulator() {
       installments: Number(formData.years) * 12,
     };
 
-    await createSimulation(payload);
+    const res: any = await createSimulation(payload);
+    dispatch(setSimulation({
+      simulationId: res.data.id,
+      totalValue: res.data.totalValue,
+      downPayment: res.data.downPayment,
+      installments: res.data.installments
+    }));
+    return res;
   };
   const nextStep = async () => {
     let data = formData as any;

@@ -1,13 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import { useAppSelector } from "@/redux/store";
 import Head from "next/head";
 import { financiarSac } from "@/app/utils/simulator";
 import { useEffect, useState } from "react";
+import download from "downloadjs";
 import LogoSantander from "@/assets/lg-santander.png";
 import LogoItau from "@/assets/lg-itau.png";
 import LogoBradesco from "@/assets/lg-bradesco.png";
+import { generateSimulationPdf } from "@/api/pdf.api";
 import {
   LineChart,
   Line,
@@ -28,10 +30,22 @@ const data = [
   },
 ];
 
+const getSimulationPdf = async (e: any, simulationId: string | undefined, bankName: string) => {
+  e.preventDefault();
+  e.stopPropagation();
+  await generateSimulationPdf(simulationId ?? '', bankName).then(res => {
+    download(res, `Immonova - ${bankName}.pdf`, 'application/pdf');
+  });
+}
+
 export default function Simulacao() {
-  const searchParams = useSearchParams();
-  const vP = searchParams.get("vP");
-  const n = searchParams.get("n");
+  const {
+    simulationId,
+    totalValue,
+    downPayment,
+    installments
+  } = useAppSelector((state) => state.simulation);
+
   const [graphData, setGraphData] = useState(data);
   const [valores, setValores] = useState({
     santander: {
@@ -52,8 +66,12 @@ export default function Simulacao() {
   });
 
   useEffect(() => {
-    const valor = vP ? parseFloat(vP) : 0;
-    const parcelas = n ? parseInt(n) : 0;
+    if(!totalValue || !downPayment)
+      return;
+
+    const vP = totalValue - downPayment;
+    const valor = vP ?? 0;
+    const parcelas = installments ?? 0;
     const incremento = Math.floor(parcelas / 12);
 
     const santander = financiarSac(valor, parcelas, 1.025 / 100);
@@ -90,7 +108,7 @@ export default function Simulacao() {
     }
 
     setGraphData(gD);
-  }, [n, vP]);
+  }, [installments, totalValue, downPayment]);
 
   return (
     <>
@@ -139,7 +157,7 @@ export default function Simulacao() {
                   <td className="px-6 py-4">R$ {valores.santander.primeira}</td>
                   <td className="px-6 py-4">R$ {valores.santander.ultima}</td>
                   <td className="px-6 py-4 underline text-blue-600">
-                    <a href="#">Baixar PDF</a>
+                    <span onClick={(e) => getSimulationPdf(e, simulationId, 'Santander')}>Baixar PDF</span>
                   </td>
                 </tr>
 
@@ -153,7 +171,7 @@ export default function Simulacao() {
                   <td className="px-6 py-4">R$ {valores.itau.primeira}</td>
                   <td className="px-6 py-4">R$ {valores.itau.ultima}</td>
                   <td className="px-6 py-4 underline text-blue-600">
-                    <a href="#">Baixar PDF</a>
+                    <span onClick={(e) => getSimulationPdf(e, simulationId, 'Itau')}>Baixar PDF</span>
                   </td>
                 </tr>
 
@@ -167,7 +185,7 @@ export default function Simulacao() {
                   <td className="px-6 py-4">R$ {valores.bradesco.primeira}</td>
                   <td className="px-6 py-4">R$ {valores.bradesco.ultima}</td>
                   <td className="px-6 py-4 underline text-blue-600">
-                    <a href="#">Baixar PDF</a>
+                    <span onClick={(e) => getSimulationPdf(e, simulationId, 'Bradesco')}>Baixar PDF</span>
                   </td>
                 </tr>
               </tbody>
