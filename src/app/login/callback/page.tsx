@@ -14,7 +14,7 @@ export default function LogInForm() {
 
   useEffect(() => {
     if (at && rt && exp) {
-      setTokensToStorage(at, rt, exp)
+      setTokensToStorage(at, rt, exp);
       router.push("/painel");
     } else {
       router.push("/login");

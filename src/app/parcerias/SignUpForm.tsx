@@ -5,24 +5,24 @@ import { useRouter } from "next/navigation";
 import { signup } from "@/api/auth.api";
 
 const signupUser = async (name: string, email: string, password: string) => {
-    const res = await signup(name, email, password);
-    if (res.status >= 400) {
-        return {
-            status: "error",
-            message: res.message
-        };
-    }
-    if (!res.access_token || !res.refresh_token || !res.expires_at) {
-        return {
-            status: "error",
-            message: "Usuário ou senha inválidos"
-        };
-    }
-    setTokensToStorage(res.access_token, res.refresh_token, res.expires_at);
+  const res = await signup(name, email, password);
+  if (res.status >= 400) {
     return {
-        message: "success"
-    }
-}
+      status: "error",
+      message: res.message,
+    };
+  }
+  if (!res.access_token || !res.refresh_token || !res.expires_at) {
+    return {
+      status: "error",
+      message: "Usuário ou senha inválidos",
+    };
+  }
+  setTokensToStorage(res.access_token, res.refresh_token, res.expires_at);
+  return {
+    message: "success",
+  };
+};
 
 export default function SignUpForm() {
   const router = useRouter();
@@ -43,7 +43,11 @@ export default function SignUpForm() {
     e.preventDefault();
     e.stopPropagation();
 
-    const response = await signupUser(formData.name, formData.email, formData.password);
+    const response = await signupUser(
+      formData.name,
+      formData.email,
+      formData.password,
+    );
     if (response.status == "error") {
       setError(response.message);
     } else {

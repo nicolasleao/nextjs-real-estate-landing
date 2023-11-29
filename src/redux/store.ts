@@ -4,10 +4,10 @@ import simulationReducer from "./features/simulation-slice";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 
 export const store = configureStore({
-    reducer: {
-        auth: authReducer,
-        simulation: simulationReducer,
-    }
+  reducer: {
+    auth: authReducer,
+    simulation: simulationReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

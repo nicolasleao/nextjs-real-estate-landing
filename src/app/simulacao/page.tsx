@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useAppSelector } from "@/redux/store";
-import Head from "next/head";
+import { useAppSelector, AppDispatch } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { setSimulation } from "@/redux/features/simulation-slice";
+import { useSearchParams } from "next/navigation";
 import { financiarSac } from "@/app/utils/simulator";
 import { useEffect, useState } from "react";
 import download from "downloadjs";
@@ -10,6 +12,7 @@ import LogoSantander from "@/assets/lg-santander.png";
 import LogoItau from "@/assets/lg-itau.png";
 import LogoBradesco from "@/assets/lg-bradesco.png";
 import { generateSimulationPdf } from "@/api/pdf.api";
+import Loader from "../_components/Loader";
 import {
   LineChart,
   Line,
@@ -20,6 +23,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { fetchSimulation } from "@/api/simulation.api";
 
 const data = [
   {
@@ -30,21 +34,25 @@ const data = [
   },
 ];
 
-const getSimulationPdf = async (e: any, simulationId: string | undefined, bankName: string) => {
+const getSimulationPdf = async (
+  e: any,
+  simulationId: string | undefined,
+  bankName: string,
+) => {
   e.preventDefault();
   e.stopPropagation();
-  await generateSimulationPdf(simulationId ?? '', bankName).then(res => {
-    download(res, `Immonova - ${bankName}.pdf`, 'application/pdf');
+  await generateSimulationPdf(simulationId ?? "", bankName).then((res) => {
+    download(res, `Immonova - ${bankName}.pdf`, "application/pdf");
   });
-}
+};
 
 export default function Simulacao() {
-  const {
-    simulationId,
-    totalValue,
-    downPayment,
-    installments
-  } = useAppSelector((state) => state.simulation);
+  const dispatch = useDispatch<AppDispatch>();
+  const { simulationId, totalValue, downPayment, installments } =
+    useAppSelector((state) => state.simulation);
+
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
 
   const [graphData, setGraphData] = useState(data);
   const [valores, setValores] = useState({
@@ -66,8 +74,23 @@ export default function Simulacao() {
   });
 
   useEffect(() => {
-    if(!totalValue || !downPayment)
+    if (!totalValue || !downPayment) {
+      if (id) {
+        fetchSimulation(id).then((res) => {
+          if (res.data && res.data.id) {
+            dispatch(
+              setSimulation({
+                simulationId: id,
+                totalValue: res.data.totalValue,
+                downPayment: res.data.downPayment,
+                installments: res.data.installments,
+              }),
+            );
+          }
+        });
+      }
       return;
+    }
 
     const vP = totalValue - downPayment;
     const valor = vP ?? 0;
@@ -110,11 +133,15 @@ export default function Simulacao() {
     setGraphData(gD);
   }, [installments, totalValue, downPayment]);
 
+  if (!totalValue || !downPayment) {
+    return (
+      <div className="w-full h-[100vh] flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <>
-      <Head>
-        <title>Immonova - Simulação</title>
-      </Head>
       <div className="">
         <div className="md:w-2/3 px-4 md:mx-auto mt-4 md:mt-[100px]">
           <h1 className="title-font font-medium text-4xl">
@@ -157,7 +184,13 @@ export default function Simulacao() {
                   <td className="px-6 py-4">R$ {valores.santander.primeira}</td>
                   <td className="px-6 py-4">R$ {valores.santander.ultima}</td>
                   <td className="px-6 py-4 underline text-blue-600">
-                    <span onClick={(e) => getSimulationPdf(e, simulationId, 'Santander')}>Baixar PDF</span>
+                    <span
+                      onClick={(e) =>
+                        getSimulationPdf(e, simulationId, "Santander")
+                      }
+                    >
+                      Baixar PDF
+                    </span>
                   </td>
                 </tr>
 
@@ -171,7 +204,11 @@ export default function Simulacao() {
                   <td className="px-6 py-4">R$ {valores.itau.primeira}</td>
                   <td className="px-6 py-4">R$ {valores.itau.ultima}</td>
                   <td className="px-6 py-4 underline text-blue-600">
-                    <span onClick={(e) => getSimulationPdf(e, simulationId, 'Itau')}>Baixar PDF</span>
+                    <span
+                      onClick={(e) => getSimulationPdf(e, simulationId, "Itau")}
+                    >
+                      Baixar PDF
+                    </span>
                   </td>
                 </tr>
 
@@ -185,7 +222,13 @@ export default function Simulacao() {
                   <td className="px-6 py-4">R$ {valores.bradesco.primeira}</td>
                   <td className="px-6 py-4">R$ {valores.bradesco.ultima}</td>
                   <td className="px-6 py-4 underline text-blue-600">
-                    <span onClick={(e) => getSimulationPdf(e, simulationId, 'Bradesco')}>Baixar PDF</span>
+                    <span
+                      onClick={(e) =>
+                        getSimulationPdf(e, simulationId, "Bradesco")
+                      }
+                    >
+                      Baixar PDF
+                    </span>
                   </td>
                 </tr>
               </tbody>

@@ -27,9 +27,7 @@ export default function RootLayout({
         />
       </head>
       <body className={lato.className}>
-        <ReduxProvider>
-          {children}
-        </ReduxProvider>
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );

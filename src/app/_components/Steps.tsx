@@ -107,7 +107,11 @@ export default function Steps() {
               </div>
             </div>
           </div>
-          <Image className="md:mt-0 mt-12 p-12" src={HomeIllustration} alt="step" />
+          <Image
+            className="md:mt-0 mt-12 p-12"
+            src={HomeIllustration}
+            alt="step"
+          />
         </div>
       </div>
     </section>

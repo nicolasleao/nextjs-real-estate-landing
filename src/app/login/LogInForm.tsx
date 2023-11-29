@@ -5,24 +5,24 @@ import { useRouter } from "next/navigation";
 import { logIn } from "@/api/auth.api";
 
 const logUserIn = async (email: string, password: string) => {
-    const res = await logIn(email, password);
-    if (res.status >= 300) {
-        return {
-            status: "error",
-            message: res.message
-        };
-    }
-    if (!res.access_token || !res.refresh_token || !res.expires_at) {
-        return {
-            status: "error",
-            message: "Usuário ou senha inválidos"
-        };
-    }
-    setTokensToStorage(res.access_token, res.refresh_token, res.expires_at);
+  const res = await logIn(email, password);
+  if (res.status >= 300) {
     return {
-        message: "success"
-    }
-}
+      status: "error",
+      message: res.message,
+    };
+  }
+  if (!res.access_token || !res.refresh_token || !res.expires_at) {
+    return {
+      status: "error",
+      message: "Usuário ou senha inválidos",
+    };
+  }
+  setTokensToStorage(res.access_token, res.refresh_token, res.expires_at);
+  return {
+    message: "success",
+  };
+};
 
 export default function LogInForm() {
   const [error, setError] = useState("");

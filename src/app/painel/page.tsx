@@ -31,7 +31,7 @@ export default function Dashboard() {
   if (loading)
     return (
       <div className="w-full h-[100vh] flex items-center justify-center">
-        <Loader></Loader>
+        <Loader />
       </div>
     );
 

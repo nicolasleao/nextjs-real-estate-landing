@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
@@ -12,8 +12,8 @@ import InputMask from "react-input-mask";
 import Loader from "../Loader";
 import { createSimulation } from "@/api/simulation.api";
 
-const getSimulationLink = (totalValue: number, installments: number) => {
-  return `/simulacao?vP=${totalValue}&n=${installments}`;
+const getSimulationLink = (simulationId: string) => {
+  return `/simulacao?id=${simulationId}`;
 };
 
 export default function Simulator() {
@@ -35,12 +35,14 @@ export default function Simulator() {
     };
 
     const res: any = await createSimulation(payload);
-    dispatch(setSimulation({
-      simulationId: res.data.id,
-      totalValue: res.data.totalValue,
-      downPayment: res.data.downPayment,
-      installments: res.data.installments
-    }));
+    dispatch(
+      setSimulation({
+        simulationId: res.data.id,
+        totalValue: res.data.totalValue,
+        downPayment: res.data.downPayment,
+        installments: res.data.installments,
+      }),
+    );
     return res;
   };
   const nextStep = async () => {
@@ -49,8 +51,8 @@ export default function Simulator() {
       setLoading(true);
       const vP = parseFloat(data.value) - parseFloat(data.initial);
       const n = parseInt(data.years) * 12;
-      await submitFormData(data);
-      push(getSimulationLink(vP, n));
+      const res = await submitFormData(data);
+      push(getSimulationLink(res.data.id));
     } else {
       setCurrentStep(1);
     }
