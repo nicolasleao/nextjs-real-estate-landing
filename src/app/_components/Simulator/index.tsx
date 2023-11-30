@@ -41,6 +41,7 @@ export default function Simulator() {
         totalValue: res.data.totalValue,
         downPayment: res.data.downPayment,
         installments: res.data.installments,
+        simulationData: res.simulationData,
       }),
     );
     return res;

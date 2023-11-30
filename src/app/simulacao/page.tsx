@@ -5,12 +5,12 @@ import { useAppSelector, AppDispatch } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { setSimulation } from "@/redux/features/simulation-slice";
 import { useSearchParams } from "next/navigation";
-import { financiarSac } from "@/app/utils/simulator";
 import { useEffect, useState } from "react";
 import download from "downloadjs";
 import LogoSantander from "@/assets/lg-santander.png";
 import LogoItau from "@/assets/lg-itau.png";
 import LogoBradesco from "@/assets/lg-bradesco.png";
+import LogoCaixa from "@/assets/lg-caixa.png";
 import BotaoWhatsapp from "@/assets/botao-whatsapp.svg";
 import { generateSimulationPdf } from "@/api/pdf.api";
 import Loader from "../_components/Loader";
@@ -32,8 +32,17 @@ const data = [
     Santander: 4000,
     Itau: 2400,
     Bradesco: 2400,
+    Caixa: 2400,
   },
 ];
+
+const logoMap = {
+  Santander: LogoSantander,
+  Itau: LogoItau,
+  Bradesco: LogoBradesco,
+  Caixa: LogoCaixa
+}
+type LogoMapIndex = 'Santander' | 'Itau' | 'Bradesco' | 'Caixa'; 
 
 const getSimulationPdf = async (
   e: any,
@@ -49,33 +58,16 @@ const getSimulationPdf = async (
 
 export default function Simulacao() {
   const dispatch = useDispatch<AppDispatch>();
-  const { simulationId, totalValue, downPayment, installments } =
+  const { simulationId, totalValue, downPayment, installments, simulationData } =
     useAppSelector((state) => state.simulation);
 
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
   const [graphData, setGraphData] = useState(data);
-  const [valores, setValores] = useState({
-    santander: {
-      primeira: 0,
-      ultima: 0,
-      juros: "0",
-    },
-    itau: {
-      primeira: 0,
-      ultima: 0,
-      juros: "0",
-    },
-    bradesco: {
-      primeira: 0,
-      ultima: 0,
-      juros: "0",
-    },
-  });
 
   useEffect(() => {
-    if (!totalValue || !downPayment) {
+    if (!totalValue || !downPayment || !simulationData) {
       if (id) {
         fetchSimulation(id).then((res) => {
           if (res.data && res.data.id) {
@@ -85,6 +77,7 @@ export default function Simulacao() {
                 totalValue: res.data.totalValue,
                 downPayment: res.data.downPayment,
                 installments: res.data.installments,
+                simulationData: res.simulationData,
               }),
             );
           }
@@ -93,41 +86,22 @@ export default function Simulacao() {
       return;
     }
 
-    const vP = totalValue - downPayment;
-    const valor = vP ?? 0;
     const parcelas = installments ?? 0;
     const incremento = Math.floor(parcelas / 12);
 
-    const santander = financiarSac(valor, parcelas, 1.025 / 100);
-    const itau = financiarSac(valor, parcelas, 0.89 / 100);
-    const bradesco = financiarSac(valor, parcelas, 0.916 / 100);
-
-    setValores({
-      santander: {
-        primeira: santander.parcelas[0],
-        ultima: santander.parcelas[parcelas - 1],
-        juros: (1.025 * 12).toFixed(2),
-      },
-      itau: {
-        primeira: itau.parcelas[0],
-        ultima: itau.parcelas[parcelas - 1],
-        juros: (0.891 * 12).toFixed(2),
-      },
-      bradesco: {
-        primeira: bradesco.parcelas[0],
-        ultima: bradesco.parcelas[parcelas - 1],
-        juros: (0.916 * 12).toFixed(2),
-      },
-    });
+    const santander = simulationData.find((el: any) => el.bankName == 'Santander');
+    const itau = simulationData.find((el: any) => el.bankName == 'Itau');
+    const bradesco = simulationData.find((el: any) => el.bankName == 'Bradesco');
+    const caixa = simulationData.find((el: any) => el.bankName == 'Caixa');
 
     const gD = [];
-
     for (let mes = 0; mes < parcelas; mes += incremento) {
       gD.push({
         name: `Mês ${mes + 1}`,
-        Santander: santander.parcelas[mes],
-        Itau: itau.parcelas[mes],
-        Bradesco: bradesco.parcelas[mes],
+        Santander: santander.installments[mes],
+        Itau: itau.installments[mes],
+        Bradesco: bradesco.installments[mes],
+        Caixa: caixa.installments[mes]
       });
     }
 
@@ -171,77 +145,54 @@ export default function Simulacao() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white border-b">
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                  >
-                    <Image
-                      src={LogoSantander}
-                      alt="Logo Santander"
-                      width="64"
-                    />
-                  </th>
-                  <td className="px-6 py-4">R$ {valores.santander.primeira}</td>
-                  <td className="px-6 py-4">R$ {valores.santander.ultima}</td>
-                  <td className="px-6 py-4 underline text-blue-600">
-                    <span
-                      className="cursor-pointer"
-                      onClick={(e) =>
-                        getSimulationPdf(e, simulationId, "Santander")
+                {simulationData.map((item: { bankName: LogoMapIndex, installments: number[] }) => {
+                  return (
+                    <tr className="bg-white border-b" key={item.bankName}>
+                      <td
+                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                      >
+                        <Image
+                          src={logoMap[item.bankName]}
+                          alt="Logo Santander"
+                          width="64"
+                        />
+                      </td>
+                      <td className="px-6 py-4">
+                      {
+                        item.installments[0].toLocaleString('pt-br', {
+                          style: 'currency',
+                          currency: 'BRL',
+                        })
                       }
-                    >
-                      Baixar PDF
-                    </span>
-                  </td>
-                </tr>
-
-                <tr className="bg-white border-b">
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                  >
-                    <Image src={LogoItau} alt="Logo Itau" width="64" />
-                  </th>
-                  <td className="px-6 py-4">R$ {valores.itau.primeira}</td>
-                  <td className="px-6 py-4">R$ {valores.itau.ultima}</td>
-                  <td className="px-6 py-4 underline text-blue-600">
-                    <span
-                      className="cursor-pointer"
-                      onClick={(e) => getSimulationPdf(e, simulationId, "Itau")}
-                    >
-                      Baixar PDF
-                    </span>
-                  </td>
-                </tr>
-
-                <tr className="bg-white border-b">
-                  <th
-                    scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                  >
-                    <Image src={LogoBradesco} alt="Logo Bradesco" width="64" />
-                  </th>
-                  <td className="px-6 py-4">R$ {valores.bradesco.primeira}</td>
-                  <td className="px-6 py-4">R$ {valores.bradesco.ultima}</td>
-                  <td className="px-6 py-4 underline text-blue-600">
-                    <span
-                      className="cursor-pointer"
-                      onClick={(e) =>
-                        getSimulationPdf(e, simulationId, "Bradesco")
+                      </td>
+                      <td className="px-6 py-4">
+                      {
+                        item.installments[item.installments.length - 1].toLocaleString('pt-br', {
+                          style: 'currency',
+                          currency: 'BRL',
+                        })
                       }
-                    >
-                      Baixar PDF
-                    </span>
-                  </td>
-                </tr>
+                      </td>
+                      <td className="px-6 py-4 underline text-blue-600">
+                        <span
+                          className="cursor-pointer"
+                          onClick={(e) =>
+                            getSimulationPdf(e, simulationId, item.bankName)
+                          }
+                        >
+                          Baixar PDF
+                        </span>
+                      </td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>
 
           <div
             className="flex items-center justify-center mt-8 cursor-pointer"
-            onClick={(e) => {
+            onClick={() => {
               window.open(`https:wa.me/${process.env.NEXT_PUBLIC_BANK_BROKER_PHONE}`, '_blank')
             }}
           >
@@ -252,7 +203,7 @@ export default function Simulacao() {
             />
           </div>
 
-          <div className="mt-8 mb-[60px]">
+          <div className="mt-8 mb-[60px]" style={{marginLeft: '-15px'}}>
             <ResponsiveContainer width="100%" height={400}>
               <LineChart
                 width={1200}
@@ -271,13 +222,9 @@ export default function Simulacao() {
                 <Tooltip />
                 <Legend />
                 <Line type="monotone" dataKey="Santander" stroke="#FE0001" />
-                <Line
-                  type="monotone"
-                  dataKey="Itau"
-                  stroke="#33348E"
-                  activeDot={{ r: 8 }}
-                />
+                <Line type="monotone" dataKey="Itau" stroke="#33348E" />
                 <Line type="monotone" dataKey="Bradesco" stroke="#CC232A" />
+                <Line type="monotone" dataKey="Caixa" stroke="#e38724" />
               </LineChart>
             </ResponsiveContainer>
           </div>

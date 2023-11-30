@@ -5,6 +5,7 @@ interface SimulationState {
   totalValue?: number;
   downPayment?: number;
   installments?: number;
+  simulationData?: any;
 }
 
 const initialState: SimulationState = {};
@@ -20,6 +21,7 @@ export const simulationSlice = createSlice({
         totalValue: number;
         downPayment: number;
         installments: number;
+        simulationData: any;
       }>,
     ) => {
       return {
@@ -27,6 +29,7 @@ export const simulationSlice = createSlice({
         totalValue: action.payload.totalValue,
         downPayment: action.payload.downPayment,
         installments: action.payload.installments,
+        simulationData: action.payload.simulationData,
       };
     },
   },
