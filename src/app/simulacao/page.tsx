@@ -29,10 +29,10 @@ import { fetchSimulation } from "@/api/simulation.api";
 const data = [
   {
     name: "Mês 1",
-    Santander: 4000,
-    Itau: 2400,
-    Bradesco: 2400,
-    Caixa: 2400,
+    Santander: 0,
+    Itau: 0,
+    Bradesco: 0,
+    Caixa: 0,
   },
 ];
 
@@ -122,7 +122,7 @@ export default function Simulacao() {
     }
 
     setGraphData(gD);
-  }, [installments, totalValue, downPayment, dispatch, id]);
+  }, [installments, totalValue, downPayment, simulationData, dispatch, id]);
 
   if (!totalValue || !downPayment || !simulationData) {
     return (
@@ -211,7 +211,7 @@ export default function Simulacao() {
             className="flex items-center justify-center mt-8 cursor-pointer"
             onClick={() => {
               window.open(
-                `https:wa.me/${process.env.NEXT_PUBLIC_BANK_BROKER_PHONE}`,
+                `https://wa.me/${process.env.NEXT_PUBLIC_BANK_BROKER_PHONE}`,
                 "_blank",
               );
             }}
