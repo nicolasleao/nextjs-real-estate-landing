@@ -50,10 +50,7 @@ export default function Simulator() {
     let data = formData as any;
     if (data.name && data.email) {
       setLoading(true);
-      const vP = parseFloat(data.value) - parseFloat(data.initial);
-      const n = parseInt(data.years) * 12;
-      const res = await submitFormData(data);
-      push(getSimulationLink(res.data.id));
+      submitFormData(data).then((res) => push(getSimulationLink(res.data.id)));
     } else {
       setCurrentStep(1);
     }
