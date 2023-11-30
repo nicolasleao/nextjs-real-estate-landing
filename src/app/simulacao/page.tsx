@@ -52,7 +52,14 @@ const getSimulationPdf = async (
   e.preventDefault();
   e.stopPropagation();
   await generateSimulationPdf(simulationId ?? "", bankName).then((res) => {
-    download(res, `Immonova - ${bankName}.pdf`, "application/pdf");
+    if (res) {
+      download(res, `Immonova - ${bankName}.pdf`, "application/pdf");
+    } else {
+      window.open(
+        `${process.env.NEXT_PUBLIC_API_URL}/pdf/simulation/${simulationId}?bank=${bankName}`,
+        "_blank",
+      );
+    }
   });
 };
 
