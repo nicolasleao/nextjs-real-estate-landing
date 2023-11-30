@@ -42,10 +42,11 @@ html {
   padding-top: 20px;
 }
 
-.dashboard-header.menu-active, .content.menu-active {
+.dashboard-header.menu-active,
+.content.menu-active {
   min-width: 500px;
 }
 
 .stat-pill {
-  word-break:keep-all;
+  word-break: keep-all;
 }
