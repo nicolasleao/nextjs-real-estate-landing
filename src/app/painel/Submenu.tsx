@@ -27,7 +27,7 @@ export default function Submenu({ icon, label, items }: any) {
         {items.map((subItem: any) => (
           <div key={subItem.href}>
             <Link
-              href="#"
+              href={`/painel/${subItem.href}`}
               className="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
             >
               {subItem.label}

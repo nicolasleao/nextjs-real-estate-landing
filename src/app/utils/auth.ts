@@ -11,6 +11,17 @@ export const setTokensToStorage = (
   localStorage.setItem("@immonova/exp", expiresAt);
 };
 
+export const isLoggedIn = async (cb: any) => {
+  const at = localStorage.getItem("@immonova/at");
+  const rt = localStorage.getItem("@immonova/rt");
+  const exp = localStorage.getItem("@immonova/rt");
+  if (!at || !rt || !exp) {
+    window.location.href = "/login";
+  } else {
+    cb();
+  }
+};
+
 export const getUpdatedTokens = async () => {
   // fetch current tokens from localStorage
   const at = localStorage.getItem("@immonova/at");
@@ -35,8 +46,11 @@ export const getUpdatedTokens = async () => {
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/refresh`,
+        {},
         {
-          refreshToken: reqBodyJson,
+          headers: {
+            authorization: `Bearer ${rt}`,
+          },
         },
       );
       const { access_token, refresh_token, expires_at } = res.data;

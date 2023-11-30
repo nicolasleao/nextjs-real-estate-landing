@@ -33,3 +33,11 @@ html {
 .bank-simulation {
   margin-top: 25px;
 }
+
+.dashboard-header {
+  border-bottom: 1px solid #cacaca;
+}
+
+.content {
+  padding-top: 20px;
+}

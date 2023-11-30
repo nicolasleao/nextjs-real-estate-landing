@@ -136,7 +136,7 @@ export default function Simulator() {
             </label>
             <input
               onChange={(e) => updateFormData("years", e.target.value)}
-              onKeyUp={({key}) => {
+              onKeyUp={({ key }) => {
                 if (key == "Enter") {
                   nextStep();
                 }
@@ -188,7 +188,7 @@ export default function Simulator() {
             </label>
             <input
               onChange={(e) => updateFormData("email", e.target.value)}
-              onKeyUp={({key}) => {
+              onKeyUp={({ key }) => {
                 if (key == "Enter") {
                   nextStep();
                 }

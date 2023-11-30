@@ -202,13 +202,17 @@ export default function Simulacao() {
                             <span
                               className="cursor-pointer"
                               onClick={(e) =>
-                                getSimulationPdf(e, simulationId, item.bankName, setDownloading)
+                                getSimulationPdf(
+                                  e,
+                                  simulationId,
+                                  item.bankName,
+                                  setDownloading,
+                                )
                               }
                             >
                               Baixar PDF
                             </span>
                           )}
-                          
                         </td>
                       </tr>
                     );

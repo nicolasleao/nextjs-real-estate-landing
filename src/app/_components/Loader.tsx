@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 interface LoaderProps {
-  size?: number,
+  size?: number;
 }
 
 export default function Loader(props: LoaderProps) {

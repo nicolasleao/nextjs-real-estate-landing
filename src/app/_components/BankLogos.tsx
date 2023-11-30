@@ -24,7 +24,6 @@ export default function BankLogos() {
           <div className="flex justify-center items-center">
             <Image src={LogoCaixa} alt="Logo Bradesco" width="90" />
           </div>
-
         </div>
       </div>
     </section>
