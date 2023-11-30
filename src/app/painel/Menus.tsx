@@ -37,11 +37,9 @@ export default function Menus({ children }: { children: ReactNode }) {
   return (
     <>
       <div className="relative overflow-x-auto">
-        <div className="w-full h-[70px] dashboard-header p-5">
+        <div className={`w-full h-[70px] dashboard-header p-5 ${menuActive ? 'ml-64 menu-active' : ''}`}>
           <div
-            className={`${
-              menuActive ? "ml-64" : ""
-            } menu-toggle cursor-pointer`}
+            className="menu-toggle cursor-pointer"
             onClick={toggleMenu}
           >
             <span className="sr-only">Abrir menu lateral</span>
@@ -49,7 +47,7 @@ export default function Menus({ children }: { children: ReactNode }) {
           </div>
         </div>
         <Sidenav active={menuActive} toggleActive={toggleMenu} />
-        <div className={`${menuActive ? "ml-64" : ""} content`}>{children}</div>
+        <div className={`${menuActive ? "ml-64 menu-active" : ""} content`}>{children}</div>
       </div>
     </>
   );

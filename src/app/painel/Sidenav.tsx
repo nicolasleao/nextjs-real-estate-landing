@@ -3,7 +3,7 @@ import Link from "next/link";
 import Submenu from "./Submenu";
 
 const sidebarItems = [
-  { href: "/dashboard", label: "Dashboard", icon: "la-chart-pie" },
+  { href: "/", label: "Dashboard", icon: "la-chart-pie" },
   {
     href: "/imoveis",
     label: "Imoveis",
