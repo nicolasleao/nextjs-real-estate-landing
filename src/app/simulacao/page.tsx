@@ -48,9 +48,11 @@ const getSimulationPdf = async (
   e: any,
   simulationId: string | undefined,
   bankName: string,
+  setDownloading: any,
 ) => {
   e.preventDefault();
   e.stopPropagation();
+  setDownloading(true);
   await generateSimulationPdf(simulationId ?? "", bankName).then((res) => {
     if (res) {
       download(res, `Immonova - ${bankName}.pdf`, "application/pdf");
@@ -60,6 +62,7 @@ const getSimulationPdf = async (
         "_blank",
       );
     }
+    setDownloading(false);
   });
 };
 
@@ -77,6 +80,7 @@ export default function Simulacao() {
   const id = searchParams.get("id");
 
   const [graphData, setGraphData] = useState(data);
+  const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
     if (!totalValue || !downPayment || !simulationData) {
@@ -190,14 +194,21 @@ export default function Simulacao() {
                           })}
                         </td>
                         <td className="px-6 py-4 underline text-blue-600">
-                          <span
-                            className="cursor-pointer"
-                            onClick={(e) =>
-                              getSimulationPdf(e, simulationId, item.bankName)
-                            }
-                          >
-                            Baixar PDF
-                          </span>
+                          {downloading ? (
+                            <div className="ml-[20px]">
+                              <Loader size={24} />
+                            </div>
+                          ) : (
+                            <span
+                              className="cursor-pointer"
+                              onClick={(e) =>
+                                getSimulationPdf(e, simulationId, item.bankName, setDownloading)
+                              }
+                            >
+                              Baixar PDF
+                            </span>
+                          )}
+                          
                         </td>
                       </tr>
                     );

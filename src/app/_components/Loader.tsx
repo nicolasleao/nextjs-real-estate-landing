@@ -1,12 +1,16 @@
 import Image from "next/image";
 
-export default function Loader() {
+interface LoaderProps {
+  size?: number,
+}
+
+export default function Loader(props: LoaderProps) {
   return (
     <Image
       src="/img/loader-min.gif"
       alt="Immonova loader"
-      height="30"
-      width="30"
+      height={`${props.size ?? 30}`}
+      width={`${props.size ?? 30}`}
       priority
     />
   );
