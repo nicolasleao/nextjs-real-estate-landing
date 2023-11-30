@@ -136,10 +136,15 @@ export default function Simulator() {
             </label>
             <input
               onChange={(e) => updateFormData("years", e.target.value)}
-              type="text"
+              onKeyUp={({key}) => {
+                if (key == "Enter") {
+                  nextStep();
+                }
+              }}
+              type="number"
               name="installments"
               id="installments"
-              className="w-full bg-white rounded border border-gray-300 focus:border-primary-green focus:ring-2 focus:ring-primary-green text-base outline-none text-gray-700 py-1.5 pl-4 pr-20 leading-8 transition-colors duration-200"
+              className="w-full bg-white rounded border border-gray-300 focus:border-primary-green focus:ring-2 focus:ring-primary-green text-base outline-none text-gray-700 py-1.5 pl-4 leading-8 transition-colors duration-200"
               placeholder="35"
             />
           </div>
@@ -160,6 +165,7 @@ export default function Simulator() {
               id="name"
               className="w-full bg-white rounded border border-gray-300 focus:border-primary-green focus:ring-2 focus:ring-primary-green text-base outline-none text-gray-700 py-1.5 pl-4 pr-20 leading-8 transition-colors duration-200"
               placeholder="João da Silva"
+              autoFocus
             />
 
             <label htmlFor="cpf" className="leading-7 text-sm text-gray-600">
@@ -182,6 +188,11 @@ export default function Simulator() {
             </label>
             <input
               onChange={(e) => updateFormData("email", e.target.value)}
+              onKeyUp={({key}) => {
+                if (key == "Enter") {
+                  nextStep();
+                }
+              }}
               type="email"
               name="email"
               id="email"
