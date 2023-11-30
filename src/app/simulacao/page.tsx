@@ -40,9 +40,9 @@ const logoMap = {
   Santander: LogoSantander,
   Itau: LogoItau,
   Bradesco: LogoBradesco,
-  Caixa: LogoCaixa
-}
-type LogoMapIndex = 'Santander' | 'Itau' | 'Bradesco' | 'Caixa'; 
+  Caixa: LogoCaixa,
+};
+type LogoMapIndex = "Santander" | "Itau" | "Bradesco" | "Caixa";
 
 const getSimulationPdf = async (
   e: any,
@@ -58,8 +58,13 @@ const getSimulationPdf = async (
 
 export default function Simulacao() {
   const dispatch = useDispatch<AppDispatch>();
-  const { simulationId, totalValue, downPayment, installments, simulationData } =
-    useAppSelector((state) => state.simulation);
+  const {
+    simulationId,
+    totalValue,
+    downPayment,
+    installments,
+    simulationData,
+  } = useAppSelector((state) => state.simulation);
 
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
@@ -89,10 +94,14 @@ export default function Simulacao() {
     const parcelas = installments ?? 0;
     const incremento = Math.floor(parcelas / 12);
 
-    const santander = simulationData.find((el: any) => el.bankName == 'Santander');
-    const itau = simulationData.find((el: any) => el.bankName == 'Itau');
-    const bradesco = simulationData.find((el: any) => el.bankName == 'Bradesco');
-    const caixa = simulationData.find((el: any) => el.bankName == 'Caixa');
+    const santander = simulationData.find(
+      (el: any) => el.bankName == "Santander",
+    );
+    const itau = simulationData.find((el: any) => el.bankName == "Itau");
+    const bradesco = simulationData.find(
+      (el: any) => el.bankName == "Bradesco",
+    );
+    const caixa = simulationData.find((el: any) => el.bankName == "Caixa");
 
     const gD = [];
     for (let mes = 0; mes < parcelas; mes += incremento) {
@@ -101,7 +110,7 @@ export default function Simulacao() {
         Santander: santander.installments[mes],
         Itau: itau.installments[mes],
         Bradesco: bradesco.installments[mes],
-        Caixa: caixa.installments[mes]
+        Caixa: caixa.installments[mes],
       });
     }
 
@@ -145,47 +154,48 @@ export default function Simulacao() {
                 </tr>
               </thead>
               <tbody>
-                {simulationData.map((item: { bankName: LogoMapIndex, installments: number[] }) => {
-                  return (
-                    <tr className="bg-white border-b" key={item.bankName}>
-                      <td
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-                      >
-                        <Image
-                          src={logoMap[item.bankName]}
-                          alt="Logo Santander"
-                          width="64"
-                        />
-                      </td>
-                      <td className="px-6 py-4">
-                      {
-                        item.installments[0].toLocaleString('pt-br', {
-                          style: 'currency',
-                          currency: 'BRL',
-                        })
-                      }
-                      </td>
-                      <td className="px-6 py-4">
-                      {
-                        item.installments[item.installments.length - 1].toLocaleString('pt-br', {
-                          style: 'currency',
-                          currency: 'BRL',
-                        })
-                      }
-                      </td>
-                      <td className="px-6 py-4 underline text-blue-600">
-                        <span
-                          className="cursor-pointer"
-                          onClick={(e) =>
-                            getSimulationPdf(e, simulationId, item.bankName)
-                          }
-                        >
-                          Baixar PDF
-                        </span>
-                      </td>
-                    </tr>
-                  )
-                })}
+                {simulationData.map(
+                  (item: {
+                    bankName: LogoMapIndex;
+                    installments: number[];
+                  }) => {
+                    return (
+                      <tr className="bg-white border-b" key={item.bankName}>
+                        <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                          <Image
+                            src={logoMap[item.bankName]}
+                            alt="Logo Santander"
+                            width="64"
+                          />
+                        </td>
+                        <td className="px-6 py-4">
+                          {item.installments[0].toLocaleString("pt-br", {
+                            style: "currency",
+                            currency: "BRL",
+                          })}
+                        </td>
+                        <td className="px-6 py-4">
+                          {item.installments[
+                            item.installments.length - 1
+                          ].toLocaleString("pt-br", {
+                            style: "currency",
+                            currency: "BRL",
+                          })}
+                        </td>
+                        <td className="px-6 py-4 underline text-blue-600">
+                          <span
+                            className="cursor-pointer"
+                            onClick={(e) =>
+                              getSimulationPdf(e, simulationId, item.bankName)
+                            }
+                          >
+                            Baixar PDF
+                          </span>
+                        </td>
+                      </tr>
+                    );
+                  },
+                )}
               </tbody>
             </table>
           </div>
@@ -193,7 +203,10 @@ export default function Simulacao() {
           <div
             className="flex items-center justify-center mt-8 cursor-pointer"
             onClick={() => {
-              window.open(`https:wa.me/${process.env.NEXT_PUBLIC_BANK_BROKER_PHONE}`, '_blank')
+              window.open(
+                `https:wa.me/${process.env.NEXT_PUBLIC_BANK_BROKER_PHONE}`,
+                "_blank",
+              );
             }}
           >
             <Image
@@ -203,7 +216,7 @@ export default function Simulacao() {
             />
           </div>
 
-          <div className="mt-8 mb-[60px]" style={{marginLeft: '-15px'}}>
+          <div className="mt-8 mb-[60px]" style={{ marginLeft: "-15px" }}>
             <ResponsiveContainer width="100%" height={400}>
               <LineChart
                 width={1200}
