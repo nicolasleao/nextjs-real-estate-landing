@@ -117,7 +117,7 @@ export default function Simulacao() {
     setGraphData(gD);
   }, [installments, totalValue, downPayment, dispatch, id]);
 
-  if (!totalValue || !downPayment) {
+  if (!totalValue || !downPayment || !simulationData) {
     return (
       <div className="w-full h-[100vh] flex items-center justify-center">
         <Loader />
