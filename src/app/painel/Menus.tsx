@@ -6,7 +6,7 @@ import Sidenav from "./Sidenav";
 import Loader from "@/app/_components/Loader";
 import HamburgerMenuIcon from "@/assets/icons/hamburger-menu.svg";
 import { isLoggedIn } from "@/app/utils/auth";
-import { useWindowWidth } from "@/app/utils";
+import { useWindowWidth } from "@/app/utils/hooks";
 
 export default function Menus({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);

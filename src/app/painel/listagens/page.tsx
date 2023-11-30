@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Menus from "../Menus";
 
 export default function Imoveis() {
-  return <Menus>Mensagens</Menus>;
+  const [loading, setLoading] = useState(false);
+  return <Menus>Listagens</Menus>;
 }

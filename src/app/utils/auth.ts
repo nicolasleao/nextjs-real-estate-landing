@@ -16,7 +16,7 @@ export const isLoggedIn = async (cb: any) => {
   const rt = localStorage.getItem("@immonova/rt");
   const exp = localStorage.getItem("@immonova/rt");
   if (!at || !rt || !exp) {
-    window.location.href = "/login";
+    if (typeof window != "undefined") window.location.href = "/login";
   } else {
     cb();
   }
