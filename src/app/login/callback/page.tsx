@@ -5,7 +5,7 @@ import Loader from "@/app/_components/Loader";
 import { useSearchParams, useRouter } from "next/navigation";
 import { setTokensToStorage } from "@/app/utils/auth";
 
-export default function LogInForm() {
+export default function LogInCallback() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const at = searchParams.get("at");

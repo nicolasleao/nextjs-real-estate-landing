@@ -46,6 +46,7 @@ export default function Simulator() {
     );
     return res;
   };
+  
   const nextStep = async () => {
     let data = formData as any;
     if (data.name && data.email) {
