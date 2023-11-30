@@ -2,6 +2,7 @@ import Image from "next/image";
 import LogoSantander from "@/assets/lg-santander.png";
 import LogoItau from "@/assets/lg-itau.png";
 import LogoBradesco from "@/assets/lg-bradesco.png";
+import LogoCaixa from "@/assets/lg-caixa.png";
 
 export default function BankLogos() {
   return (
@@ -11,15 +12,19 @@ export default function BankLogos() {
           Em parceria com os melhores bancos do Brasil
         </h2>
         <div className="flex items-center gap-10 justify-center">
-          <a href="#" className="flex justify-center items-center">
+          <div className="flex justify-center items-center">
             <Image src={LogoSantander} alt="Logo Santander" />
-          </a>
-          <a href="#" className="flex justify-center items-center">
+          </div>
+          <div className="flex justify-center items-center">
             <Image src={LogoItau} alt="Logo Itau" />
-          </a>
-          <a href="#" className="flex justify-center items-center">
+          </div>
+          <div className="flex justify-center items-center">
             <Image src={LogoBradesco} alt="Logo Bradesco" />
-          </a>
+          </div>
+          <div className="flex justify-center items-center">
+            <Image src={LogoCaixa} alt="Logo Bradesco" width="90" />
+          </div>
+
         </div>
       </div>
     </section>
