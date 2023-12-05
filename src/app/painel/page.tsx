@@ -10,19 +10,19 @@ const data = [
     name: "A",
     Lucro: 100,
     Faturamento: 120,
-    "Comissão": 20,
+    Comissão: 20,
   },
   {
     name: "B",
     Lucro: 200,
     Faturamento: 220,
-    "Comissão": 20,
+    Comissão: 20,
   },
   {
     name: "C",
     Lucro: 400,
     Faturamento: 420,
-    "Comissão": 20,
+    Comissão: 20,
   },
 ];
 

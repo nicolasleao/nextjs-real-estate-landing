@@ -8,11 +8,11 @@ interface SidenavProps {
 }
 
 interface SidebarItem {
-  href: string,
-  label: string,
-  icon: string,
-  items?: any[],
-  counter?: number,
+  href: string;
+  label: string;
+  icon: string;
+  items?: any[];
+  counter?: number;
 }
 
 const sidebarItems: SidebarItem[] = [
@@ -52,7 +52,11 @@ export default function Sidenav(props: SidenavProps) {
                     >
                       <i className={`las ${item.icon}`}></i>
                       <span className="ml-3">{item.label}</span>
-                      {!!item.counter && (<span className="ml-3 color-primary-red">({item.counter})</span>)}
+                      {!!item.counter && (
+                        <span className="ml-3 color-primary-red">
+                          ({item.counter})
+                        </span>
+                      )}
                     </Link>
                   )}
                 </li>
