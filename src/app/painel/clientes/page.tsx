@@ -4,8 +4,8 @@ import React from "react";
 import { useSearchParams } from "next/navigation";
 import Menus from "../Menus";
 
-export default function Calendario() {
+export default function Clientes() {
   const searchParams = useSearchParams();
-  const mode = searchParams.get("mode");
-  return <Menus>Calendário - {mode}</Menus>;
+  const type = searchParams.get("type");
+  return <Menus>Clientes - {type}</Menus>;
 }

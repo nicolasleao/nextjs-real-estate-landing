@@ -1,6 +1,6 @@
 function Statistics() {
   return (
-    <div className="w-full flex justify-around items-center px-0 sm:px-12">
+    <div className="w-full flex justify-around items-center">
       <div className="border-solid border h-[200px] w-full m-2 lg:m-5 p-2">
         <span className="m-2 text-lg">
           <span className="text-xs sm:text-sm p-2 text-primary-green stat-pill">

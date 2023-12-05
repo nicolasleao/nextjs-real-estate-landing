@@ -36,17 +36,25 @@ html {
 
 .dashboard-header {
   border-bottom: 1px solid #cacaca;
+  min-width: 370px;
 }
 
 .content {
   padding-top: 20px;
+  min-width: 370px;
 }
 
 .dashboard-header.menu-active,
 .content.menu-active {
-  min-width: 500px;
+  width: calc(100% - 16rem);
+  margin-left: 16rem;
 }
 
 .stat-pill {
   word-break: keep-all;
+}
+
+.google-maps-searchbox {
+  width: 100%;
+  margin: 10px 0;
 }

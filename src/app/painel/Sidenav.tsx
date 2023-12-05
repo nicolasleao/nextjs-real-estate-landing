@@ -15,13 +15,12 @@ const sidebarItems = [
     ],
   },
   {
-    href: "/agendamento",
-    label: "Agendamento",
-    icon: "la-calendar",
+    href: "/clientes",
+    label: "Clientes",
+    icon: "la-user",
     items: [
-      { href: "/calendario?mode=disponibilidade", label: "Disponibilidade" },
-      { href: "/calendario?mode=solicitacoes", label: "Solicitações" },
-      { href: "/calendario?mode=visitas", label: "Visitas Marcadas" },
+      { href: "/clientes?type=leads", label: "Leads" },
+      { href: "/clientes?type=todos", label: "Simulações" },
     ],
   },
   { href: "/mensagens", label: "Mensagens", icon: "la-envelope", counter: 6 },
@@ -35,6 +34,7 @@ const sidebarItems = [
       { href: "/documentos?type=immonova", label: "Immonova" },
     ],
   },
+  { href: "/corretor", label: "Minha Página", icon: "la-folder" },
   { href: "/listagens", label: "Listagens", icon: "la-stream" },
 ];
 
@@ -71,6 +71,7 @@ export default function Sidenav(props: SidenavProps) {
                     >
                       <i className={`las ${item.icon}`}></i>
                       <span className="ml-3">{item.label}</span>
+                      {!!item.counter && (<span className="ml-3 color-primary-red">({item.counter})</span>)}
                     </Link>
                   )}
                 </li>
