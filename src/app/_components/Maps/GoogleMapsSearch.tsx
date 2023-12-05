@@ -28,7 +28,7 @@ export default function GoogleMapsSearch({ initialPosition, onLocationChange }: 
 
             const mapOptions: google.maps.MapOptions = {
                 center: initialPosition,
-                zoom: 15,
+                zoom: 14,
                 mapId: 'MY_NEXTJS_MAPID'
             }
 

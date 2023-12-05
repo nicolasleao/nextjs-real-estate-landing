@@ -18,7 +18,7 @@ export default function Imoveis() {
             <div className="p-3 w-full h-full">
                 <h1 className="text-2xl">Criar Imovel</h1>
                 <GoogleMap
-                    initialPosition={{ lat: -9.6622582, lng: -35.6969714 }}
+                    initialPosition={{ lat: -9.665308346172761, lng: -35.73474698335957 }}
                     onLocationChange={onLocationChange}
                 />
             </div>
