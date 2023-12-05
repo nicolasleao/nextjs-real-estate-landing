@@ -2,46 +2,27 @@ import React, { Fragment, useState } from "react";
 import Link from "next/link";
 import Submenu from "./Submenu";
 
-const sidebarItems = [
-  { href: "/", label: "Dashboard", icon: "la-chart-pie" },
-  {
-    href: "/imoveis",
-    label: "Imoveis",
-    icon: "la-home",
-    items: [
-      { href: "/imoveis?type=aluguel", label: "Aluguel" },
-      { href: "/imoveis?type=venda", label: "Venda" },
-      { href: "/imoveis?type=todos", label: "Ver todos" },
-    ],
-  },
-  {
-    href: "/clientes",
-    label: "Clientes",
-    icon: "la-user",
-    items: [
-      { href: "/clientes?type=leads", label: "Leads" },
-      { href: "/clientes?type=todos", label: "Simulações" },
-    ],
-  },
-  { href: "/mensagens", label: "Mensagens", icon: "la-envelope", counter: 6 },
-  {
-    href: "/documentos",
-    label: "Documentos",
-    icon: "la-file-invoice",
-    items: [
-      { href: "/documentos?type=contratos", label: "Contratos" },
-      { href: "/documentos?type=nf", label: "Notas Fiscais" },
-      { href: "/documentos?type=immonova", label: "Immonova" },
-    ],
-  },
-  { href: "/corretor", label: "Minha Página", icon: "la-folder" },
-  { href: "/listagens", label: "Listagens", icon: "la-stream" },
-];
-
 interface SidenavProps {
   active: any;
   toggleActive: any;
 }
+
+interface SidebarItem {
+  href: string,
+  label: string,
+  icon: string,
+  items?: any[],
+  counter?: number,
+}
+
+const sidebarItems: SidebarItem[] = [
+  { href: "/", label: "Dashboard", icon: "la-chart-pie" },
+  { href: "/imoveis", label: "Imoveis", icon: "la-home" },
+  { href: "/clientes", label: "Clientes", icon: "la-user" },
+  { href: "/mensagens", label: "Mensagens", icon: "la-envelope", counter: 6 },
+  { href: "/documentos", label: "Documentos", icon: "la-file-invoice" },
+  { href: "/corretor", label: "Minha Página", icon: "la-folder" },
+];
 
 export default function Sidenav(props: SidenavProps) {
   return (

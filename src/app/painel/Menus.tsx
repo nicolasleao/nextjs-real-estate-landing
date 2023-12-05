@@ -48,7 +48,7 @@ export default function Menus({ children }: { children: ReactNode }) {
           </div>
         </div>
         <Sidenav active={menuActive} toggleActive={toggleMenu} />
-        <div className={`${menuActive ? "menu-active" : ""} content`}>
+        <div className={`${menuActive ? "menu-active" : ""} content px-2 md:px-4`}>
           {children}
         </div>
       </div>
