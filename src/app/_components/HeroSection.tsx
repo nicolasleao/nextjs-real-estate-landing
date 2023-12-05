@@ -1,6 +1,6 @@
 "use client";
 
-import Simulator from "./Simulator";
+import Simulator from "./simulator";
 
 export default function HeroSection() {
   return (
