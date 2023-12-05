@@ -58,3 +58,8 @@ html {
   width: 100%;
   margin: 10px 0;
 }
+
+.empty-fallback {
+  width: 100%;
+  min-height: calc(100vh - 500px);
+}
