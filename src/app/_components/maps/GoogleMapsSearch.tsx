@@ -15,7 +15,6 @@ export default function GoogleMapsSearch({ initialPosition, onLocationChange }: 
 
     useEffect(() => {
         const initMap = async () => {
-            console.log('Initializing google maps api');
             
             const loader = new Loader({
                 apiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY as string,
